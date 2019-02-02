@@ -23,6 +23,19 @@
     $('#modalPassword').on('show.bs.modal', function(e){
       $("#modalPassword").css("margin-top","0px");
     });
+    $('#data2').Tabledit({
+    deleteButton: false,
+    editButton: false,      
+    columns: {
+      identifier: [0, 'id_tagihan'],                    
+      editable: [[4, 'jumlah_bayar'], [5, 'tanggal']]
+    },
+    hideIdentifier: true,
+    url: '<?php echo base_url(); ?>penagihan/live'    
+  });
+ $('.datepicker').each(function(){
+        $(this).datepicker();
+    });
    </script>
 
 

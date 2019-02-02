@@ -11,65 +11,71 @@
             <br>
             <div class="row-fluid" style="margin: 0;">
               <div class="span6">
-                <form action="" method="post">
+                <form action="<?php echo base_url(); ?>Penagihan/filter_bulan" method="post">
                 <select style="margin: 0;" name="bulan">
                   <option value="01">JANUARI</option>
-                  <option value="01">FEBUARI</option>
-                  <option value="01">MARET</option>
-                  <option value="01">APRIL</option>
-                  <option value="01">DST...</option>
+                  <option value="02">FEBUARI</option>
+                  <option value="03">MARET</option>
+                  <option value="04">APRIL</option>
+                  <option value="05">MEI</option>
+                  <option value="06">JUNI</option>
+                  <option value="07">JULI</option>
+                  <option value="08">AGUSTUS</option>
+                  <option value="09">SEPTEMBER</option>
+                  <option value="10">OKTOBER</option>
+                  <option value="11">NOVEMBER</option>
+                  <option value="12">DESEMBER</option>
                 </select>
-                 <select style="margin: 0;" name="bulan">
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                  <option value="2017">2017</option>
-                  <option value="2016">2016</option>
+                 <select style="margin: 0;" name="tahun">  
+                      <?php
+            for ($x=date("Y")-10; $x<=date("Y"); $x++)
+              {
+                echo'<option selected value="'.$x.'">'.$x.'</option>'; 
+              } 
+            ?> 
                 </select>
-                <button style="margin: 0;" class="btn btn-primary">Tampilkan Data</button>
-              </div>
+                <button style="margin: 0;"  class="btn btn-primary">Tampilkan Data</button> 
+
             </div>
+
 	 
 		        <div class="widget-box">
 		          <div class="widget-content nopadding">
-		            <table class="table table-bordered data-table">
+                      <?php if($this->session->flashdata('success')) { ?>
+                                      <div style="width:40%;" class="alert alert-success alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                      </div> 
+                   <?php } ?>
+
+              </div>
+                     
+		            <table id="data2" class="table table-bordered data-table">
 		              <thead>
 		              	<tr>
+                          <th>ID</th>
 		              		<th>No</th>
 		              		<th>Nama Perusahaan </th>
 		              		<th>Jenis Perusahaan</th>
 		              		<th>Jumlah Tagihan (Rp)</th>
                       <th>Tanggal</th>
-                      <th></th>
 		              	</tr>
 		              </thead>
 		              <tbody>
-		              	<tr>
-                      <td>1</td>
-                      <td>PT Cemerlang Jaya</td>
-                      <td>SPBU</td>
-                      <td contenteditable="">356,000</td>
-                      <td contenteditable="">01-02-2019</td>
-                      <td style="text-align: center;">
-                          <a class="btn btn-danger btn-mini" href="#"> Simpan </a></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>PT Bintang Amin</td>
-                      <td>PSO</td>
-                      <td contenteditable="">356,000</td>
-                      <td contenteditable="">01-02-2019</td>
-                      <td style="text-align: center;">
-                          <a class="btn btn-danger btn-mini" href="#"> Simpan </a></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>PT Satria Bajahitam</td>
-                      <td>SPBE</td>
-                      <td contenteditable="">356,000</td>
-                      <td contenteditable="">01-02-2019</td>
-                      <td style="text-align: center;">
-                          <a class="btn btn-danger btn-mini" href="#"> Simpan </a></td>
-                    </tr>
+                    <?php
+                                          $no = 1;
+                                          foreach($penagihan->result_array() as $data) { ?>
+		              	<tr id="<?php echo $data ['id_tagihan']; ?>">
+                      <td><?php echo $data['id_tagihan']; ?></td>
+                      <td><?php echo $no; ?></td>
+                      <td><?php echo $data['nama_pt']; ?></td>
+                      <td><?php echo $data['nama_jenis']; ?></td>
+                      <td ><?php echo $data['jumlah_bayar']; ?></td>
+                      <td ><?php echo $data['tanggal']; ?></td>
+                      </tr>
+                        <?php $no++; } ?>
 		              </tbody>
 		            </table>
 		          </div>

@@ -18,6 +18,7 @@
 <script src="<?php echo base_url(); ?>asset/js/jquery.uniform.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/select2.min.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo base_url(); ?>asset/js/jquery.tabledit.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/maruti.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/maruti.tables.js"></script>
 <script src="<?php echo base_url(); ?>asset/js/jquery.inputmask.bundle.js"></script>
