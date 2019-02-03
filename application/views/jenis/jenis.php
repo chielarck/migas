@@ -47,21 +47,13 @@
 		              	</tr>
 		              </thead>
 		              <tbody>
+		              	<?php $no = 1; foreach ($list_jenis as $lj) {?>
 		              	<tr>
-		              		<td>1</td>
-		              		<td>SPBU</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
+		              		<td><?php echo $no;; ?></td>
+		              		<td><?php echo $lj->nama_jenis; ?></td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_data" href="" data-toggle="modal" data-target="#modalUbah" data-idJenis="<?php echo $lj->id_jenis; ?>" data-namaJenis="<?php echo $lj->nama_jenis; ?>" > Ubah </a></td>
 		              	</tr>
-		              	<tr>
-		              		<td>2</td>
-		              		<td>PSO</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
-		              	</tr>
-		              	<tr>
-		              		<td>3</td>
-		              		<td>HPSO</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
-		              	</tr>
+		              	<?php $no++; } ?>
 		              </tbody>
 		            </table>
 		          </div>
@@ -79,7 +71,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">TAMBAH DATA JENIS PERUSAHAAN</h5>
       </div>
-      <form action="" method="post">
+      <?php echo form_open_multipart('jenis/simpan'); ?>
       <input type="hidden" name="tipe" value="add">
       	<div class="modal-body">
 	      	
@@ -92,7 +84,31 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <button  class="btn btn-primary">Simpan Data</button>
       </div>
-	  </form>
+	  <?php echo form_close();?>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalUbah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">UBAH DATA JENIS PERUSAHAAN</h5>
+      </div>
+      <?php echo form_open_multipart('jenis/ubah'); ?>
+      <input type="hidden" name="tipe" value="add">
+      	<div class="modal-body">
+	      	<input type="hidden" id="id_jenis" name="id_jenis" class="id_jenis">
+      		<div class="form-group">
+      			<label class="bmd-label-floating"> Jenis Perusahaan</label>
+      			<input style="width: 80%;" type="text" class="form-control nama_jenis" name="nama_jenis" maxlength="15" required>
+      		</div>
+	    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button  class="btn btn-primary">Simpan Data</button>
+      </div>
+	  <?php echo form_close();?>
     </div>
   </div>
 </div>

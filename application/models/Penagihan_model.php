@@ -12,4 +12,18 @@ class Penagihan_model extends CI_Model {
 		$q = $this->db->query("SELECT * FROM vw_tagihan ORDER BY id_tagihan ASC");
 		return $q;
 	}
+
+	public function get_combo_anggota($id="") {
+		$hasil = "";
+		$q = $this->db->query("SELECT * FROM tbl_anggota WHERE aktif = '1' ORDER BY nama_pt ASC");
+		$hasil .= '<option selected="selected" value="ALL">[SEMUA ANGGOTA] </option>';
+		foreach($q->result() as $h) {
+			if($id == $h->id_anggota) {
+				$hasil .= '<option value="'.$h->id_anggota.'" selected="selected">'.$h->nama_pt.'</option>';
+			} else {
+				$hasil .= '<option value="'.$h->id_anggota.'">'.$h->nama_pt.'</option>';
+			}
+		}
+		return $hasil;
+	}
 }

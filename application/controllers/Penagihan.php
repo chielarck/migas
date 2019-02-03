@@ -9,9 +9,9 @@ public function __construct(){
 	public function index() {
 
 		if($this->session->userdata('username') != "") { 
-			
 			$d['penagihan'] = $this->Penagihan_model->get_penagihan();
-			//$d['judul'] = 'Data Penagihan';*/
+			$d['bulan'] = date("m");
+			$d['tahun'] = date("Y");
 			$this->load->view('top',$d);
 			$this->load->view('penagihan/penagihan');
 			$this->load->view('bottom');
@@ -20,12 +20,20 @@ public function __construct(){
 		}
 	}
 
+
+	public function generate() {
+		$this->db->query("CALL stored_bulanan()");
+		redirect(base_url().'penagihan');
+	}
+
 		public function filter_bulan() {
 		if($this->input->method(TRUE) == 'POST' && !empty($_POST)) {
 			$in['bulan'] = $this->input->post('bulan');
 			$in['tahun'] = $this->input->post('tahun');
 			$d['penagihan']=$this->Penagihan_model->cek($in);
-				$this->load->view('top',$d);
+			$d['bulan'] = $this->input->post("bulan");
+			$d['tahun'] = $this->input->post("tahun");
+			$this->load->view('top',$d);
 			$this->load->view('penagihan/penagihan');
 			$this->load->view('bottom');
 			
@@ -33,19 +41,19 @@ public function __construct(){
 			redirect(base_url());
 		}
 		}
-			public function live() {
-		$input = filter_input_array(INPUT_POST);
-	if ($input['action'] == 'edit') {	
-	$update_field='';
-	if(isset($input['jumlah_bayar'])) {
-		$update_field.= "jumlah_bayar='".$input['jumlah_bayar']."'";
-	} else if(isset($input['tanggal'])) {
-		$update_field.= "tanggal='".$input['tanggal']."'";
-	} 
-	if($update_field && $input['id_tagihan']) {
-		$this->db->query("UPDATE tbl_tagihan SET $update_field WHERE id_tagihan='" . $input['id_tagihan'] . "'");		
-	}
-}
+		public function live() {
+			$input = filter_input_array(INPUT_POST);
+			if ($input['action'] == 'edit') {	
+			$update_field='';
+			if(isset($input['jumlah_bayar'])) {
+				$update_field.= "jumlah_bayar='".$input['jumlah_bayar']."'";
+			} else if(isset($input['tanggal'])) {
+				$update_field.= "tanggal='".$input['tanggal']."'";
+			} 
+			if($update_field && $input['id_tagihan']) {
+				$this->db->query("UPDATE tbl_tagihan SET $update_field WHERE id_tagihan='" . $input['id_tagihan'] . "'");		
+			}
+		}
 
 
 	}

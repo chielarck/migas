@@ -21,8 +21,8 @@ $bulan_arr = array(
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="#" style="font-size: 14px;">Data Penagihan</a>
-            <a href="<?php echo base_url().'/'.$this->uri->segment(1); ?>" style="font-size: 14px;"><?php echo $bulan_arr[$bulan].' '.$tahun; ?></a>
+            <a href="#" style="font-size: 14px;">Laporan Kas Keluar</a>
+            <a href="#" style="font-size: 14px;"><?php echo $bulan_arr[$bulan].' '.$tahun; ?></a>
         </div>
     </div>
     <div class="container-fluid">
@@ -30,9 +30,10 @@ $bulan_arr = array(
           <div class="span12">
             <br>
             <div class="row-fluid" style="margin: 0;">
-              <div class="span6">
-                <form action="<?php echo base_url(); ?>Penagihan/filter_bulan" method="post">
+              <div class="span10">
+                <form action="<?php echo base_url(); ?>laporan/cari_kaskeluar" method="post">
                 <select style="margin: 0;" name="bulan">
+                  <option value>PILIH BULAN</option>
                   <option value="01" <?php if($bulan == '01') echo 'selected'; ?>>JANUARI</option>
                   <option value="02"  <?php if($bulan == '02') echo 'selected'; ?>>FEBRUARI</option>
                   <option value="03" <?php if($bulan == '03') echo 'selected'; ?>>MARET</option>
@@ -57,48 +58,38 @@ $bulan_arr = array(
                 <button style="margin: 0;"  class="btn btn-primary">Tampilkan Data</button> 
                 </form>
               </div>
-              <div class="span6" style="text-align: right;">
-                <a class="btn btn-danger" href="<?php echo base_url(); ?>penagihan/generate">Buat Tagihan</a>
+              <div class="span2" style="text-align: right;">
+                  <a class="btn btn-danger" href="<?php echo base_url().'laporan/kaskeluar_export/'.$bulan.'/'.$tahun; ?>" target="_blank">Export to Excel</a>
               </div>
             </div>
 
             <div class="widget-box">
               <div class="widget-content nopadding">
-                      <?php if($this->session->flashdata('success')) { ?>
-                                      <div style="width:40%;" class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <?php echo $this->session->flashdata('success'); ?>
-                                      </div> 
-                   <?php } ?>
-
+                     
               </div>
                      
-                <table id="data2" class="table table-bordered data-table">
+                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>No</th>
-                      <th>Nama Perusahaan </th>
-                      <th>Jenis Perusahaan</th>
-                      <th>Jumlah Tagihan (Rp)</th>
                       <th>Tanggal</th>
+                      <th>Keterangan</th>
+                      <th>Jumlah Biaya (Rp)</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    $no = 1;
-                    foreach($penagihan->result_array() as $data) { ?>
-                    <tr id="<?php echo $data ['id_tagihan']; ?>">
-                      <td><?php echo $data['id_tagihan']; ?></td>
+                    <?php $total= 0; $no =1; foreach ($kaskeluar->result_array() as $data) { $total += $data['jumlah_biaya']; ?>
+
+                    <tr>
                       <td><?php echo $no; ?></td>
-                      <td><?php echo $data['nama_pt']; ?></td>
-                      <td><?php echo $data['nama_jenis']; ?></td>
-                      <td ><?php echo number_format($data['jumlah_bayar']); ?></td>
-                      <td ><?php if(!empty($data['tanggal']) && $data['tanggal'] != "0000-00-00") echo $data['tanggal']; ?></td>
-                      </tr>
-                        <?php $no++; } ?>
+                      <td><?php echo date_format(date_create($data['tanggal']),"d-m-Y"); ?></td>
+                      <td><?php echo $data['keterangan']; ?></td>
+                      <td class="rupiah" style="text-align: right;"><?php echo $data['jumlah_biaya']; ?></td>
+                    </tr>
+                    <?php $no++; } ?>
+                    <tr>
+                        <td colspan="3" style="text-align: right;font-weight: bold;">Total (Rp)</td>
+                        <td style="text-align: right;font-weight: bold;" class="rupiah"><?php echo $total; ?></td>
                   </tbody>
                 </table>
               </div>
@@ -107,32 +98,3 @@ $bulan_arr = array(
       </div>
     </div>
 </div> 
-
-<script type="text/javascript">
-    $('#data2').Tabledit({
-    deleteButton: false,
-    editButton: false,      
-    columns: {
-      identifier: [0, 'id_tagihan'],                    
-      editable: [[4, 'jumlah_bayar'], [5, 'tanggal']]
-    },
-    onDraw: function() {
-      $('table tr td:nth-child(5) input').each(function() {
-        $('.rupiah').inputmask('decimal', {allowMinus:false, autoGroup: true, groupSeparator: '.', rightAlign: false, autoUnmask: true, removeMaskOnSubmit: true});
-        $(this).addClass("rupiah");
-      });
-
-      $('table tr td:nth-child(6) input').each(function() {
-        $(this).datepicker({
-          format: 'yyyy-mm-dd',
-          todayHighlight: true,
-          autoclose: true
-        }).on('changeDate', function(ev){                 
-          $(this).datepicker('hide');
-        });
-      });
-    },
-    hideIdentifier: true,
-    url: '<?php echo base_url(); ?>penagihan/live'    
-  });
-</script>
