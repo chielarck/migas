@@ -50,38 +50,34 @@
 		              	</tr>
 		              </thead>
 		              <tbody>
+		              	<?php $no = 1; foreach ($list_anggota as $la) {?>
 		              	<tr>
-		              		<td>1</td>
-		              		<td>52.4141.232</td>
-		              		<td>PT Cemerlang Jaya</td>
-		              		<td style="text-align: center;">SPBU</td>
-		              		<td style="text-align: center;">Aktif</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
+		              		<td><?php echo $no; ?></td>
+		              		<td><?php echo $la->no_pt; ?></td>
+		              		<td><?php echo $la->nama_pt; ?></td>
+		              		<td style="text-align: center;">
+		              			<?php $data = $this->db->get('tbl_jenis')->result();
+      								foreach ($data as $jn) {
+      									if($la->id_jenis == $jn->id_jenis){
+      										echo $jn->nama_jenis;
+      									}
+      								}
+      				 			?>
+		              		</td>
+		              		<td style="text-align: center;">
+		              			<?php
+
+		              				if($la->aktif == '0'){
+		              					echo "TIDAK AKTIF";
+		              					
+		              				}else{
+		              					echo "AKTIF";
+		              				}
+		              			 ?>
+		              		</td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataAnggota" href="" data-toggle="modal" data-target="#modalUbah" data-idAnggota="<?php echo $la->id_anggota; ?>" data-noPt="<?php echo $la->no_pt; ?>"  data-namaPt="<?php echo $la->nama_pt; ?>" data-idJenis="<?php echo $la->id_jenis; ?>" data-aktif="<?php echo $la->aktif; ?>" > Ubah </a></td>
 		              	</tr>
-		              	<tr>
-		              		<td>2</td>
-		              		<td>52.4141.232</td>
-		              		<td>PT Cemerlang Jaya</td>
-		              		<td style="text-align: center;">SPBU</td>
-		              		<td style="text-align: center;">Aktif</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
-		              	</tr>
-		              	<tr>
-		              		<td>3</td>
-		              		<td>52.4141.232</td>
-		              		<td>PT Cemerlang Jaya</td>
-		              		<td style="text-align: center;">SPBU</td>
-		              		<td style="text-align: center;">Aktif</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
-		              	</tr>
-		              	<tr>
-		              		<td>4</td>
-		              		<td>52.4141.232</td>
-		              		<td>PT Cemerlang Jaya</td>
-		              		<td style="text-align: center;">SPBU</td>
-		              		<td style="text-align: center;">Aktif</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini edit-anggota" href="" data-toggle="modal" data-target="#modalAdd"> Ubah </a></td>
-		              	</tr>
+		              	<?php  $no++; } ?>
 		              </tbody>
 		            </table>
 		          </div>
@@ -99,13 +95,13 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">TAMBAH DATA ANGGOTA</h5>
       </div>
-      <form action="" method="post">
+      <?php echo form_open_multipart('anggota/simpan'); ?>
       <input type="hidden" name="tipe" value="add">
       	<div class="modal-body">
-	      	
+	      	<?php echo form_open_multipart('jenis/ubah'); ?>
       		<div class="form-group">
       			<label class="bmd-label-floating">Nomor PT</label>
-      			<input style="width: 80%;" type="text" class="form-control" name="no_pt" maxlength="50" required>
+      			<input style="width: 80%;" type="text" class="form-control" name="no_pt" maxlength="50">
       		</div>
 
       		<div class="form-group">
@@ -116,17 +112,18 @@
       		<div class="form-group">
       			<label class="bmd-label-floating">Jenis Perusahaan</label>
       			<select  class="form-control" name="id_jenis" required>
-      				<option value>PILIH</option>
-      				<option value="SPBU">SPBU</option>
-      				<option value="PSO">PSO</option>
-      				<option value="HPSO">HPSO</option>
-      				<option value="SPBE">SPBE</option>
+      				<option value= "">PILIH</option>
+      				<?php $data = $this->db->get('tbl_jenis')->result();
+      					foreach ($data as $jn) {
+      				 ?>
+      				<option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
+      				<?php } ?>
       			</select>
       		</div>
 
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>
-      			<select  class="form-control" name="id_jenis" required>
+      			<select  class="form-control" name="aktif" required>
       				<option value="1">AKTIF</option>
       				<option value="0">TIDAK AKTIF</option>
       			</select>
@@ -136,7 +133,57 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <button  class="btn btn-primary">Simpan Data</button>
       </div>
-	  </form>
+	  <?php echo form_close();?>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalUbah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">UBAH DATA ANGGOTA</h5>
+      </div>
+      <?php echo form_open_multipart('anggota/ubah'); ?>
+      <input type="hidden" id="id_anggota" name="id_anggota" class="id_anggota">
+      	<div class="modal-body">
+	      	<?php echo form_open_multipart('jenis/simpan'); ?>
+      		<div class="form-group">
+      			<label class="bmd-label-floating">Nomor PT</label>
+      			<input style="width: 80%;" type="text" class="form-control no_pt" name="no_pt" maxlength="50">
+      		</div>
+
+      		<div class="form-group">
+      			<label class="bmd-label-floating">Nama PT</label>
+      			<input style="width: 80%;" type="text" class="form-control nama_pt" name="nama_pt" maxlength="150" required>
+      		</div>
+
+      		<div class="form-group">
+      			<label class="bmd-label-floating">Jenis Perusahaan</label>
+      			<select  class="form-control id_jenis" name="id_jenis" required>
+      				<option value= "">PILIH</option>
+      				<?php $data = $this->db->get('tbl_jenis')->result();
+      					foreach ($data as $jn) {
+      				 ?>
+      				<option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
+      				<?php } ?>
+      			</select>
+      		</div>
+
+      		<div class="form-group">
+      			<label class="bmd-label-floating">Status</label>
+      			<select  class="form-control aktif" name="aktif" required>
+      				<option value="1">AKTIF</option>
+      				<option value="0">TIDAK AKTIF</option>
+      			</select>
+      		</div>
+	    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button  class="btn btn-primary">Simpan Data</button>
+      </div>
+	  <?php echo form_close();?>
     </div>
   </div>
 </div>

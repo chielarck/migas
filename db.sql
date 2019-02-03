@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.6.20 : Database - db_migas
+SQLyog Enterprise - MySQL GUI v7.14 
+MySQL - 5.6.16 : Database - db_migas
 *********************************************************************
 */
 
@@ -8,10 +8,9 @@ MySQL - 5.6.20 : Database - db_migas
 
 /*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_migas` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `db_migas`;
@@ -27,11 +26,11 @@ CREATE TABLE `tbl_anggota` (
   `id_jenis` int(11) NOT NULL,
   `aktif` char(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_anggota` */
 
-insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`id_jenis`,`aktif`) values (1,'0040','PT.Harashi',1,'1'),(2,'0050','PT Jayapuro',1,'0'),(3,'0060','PT.Kalangkabud',2,'1'),(6,'0060','PT.Markobar',2,'1');
+insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`id_jenis`,`aktif`) values (1,'56.1242.434','PT SEJAHTERA ABADI',1,'1'),(2,'4242.3453','PT SATRIA BAJA HITAM',2,'1'),(3,'3232','PT Abadi Jaya',3,'1');
 
 /*Table structure for table `tbl_jenis` */
 
@@ -41,11 +40,11 @@ CREATE TABLE `tbl_jenis` (
   `id_jenis` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jenis` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_jenis`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_jenis` */
 
-insert  into `tbl_jenis`(`id_jenis`,`nama_jenis`) values (1,'SPBU'),(2,'PSO'),(3,'SPBE');
+insert  into `tbl_jenis`(`id_jenis`,`nama_jenis`) values (1,'SPBU'),(2,'PSO'),(3,'SPBE'),(4,'HPE');
 
 /*Table structure for table `tbl_kaskeluar` */
 
@@ -57,9 +56,11 @@ CREATE TABLE `tbl_kaskeluar` (
   `tanggal` date DEFAULT NULL,
   `jumlah_biaya` float DEFAULT NULL,
   PRIMARY KEY (`id_kaskeluar`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=470 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_kaskeluar` */
+
+insert  into `tbl_kaskeluar`(`id_kaskeluar`,`keterangan`,`tanggal`,`jumlah_biaya`) values (118,'beli minyak di warung','2019-02-02',200000),(236,'Token Listrik','2019-02-02',14000),(469,'siipp\r\n','2019-01-01',400000);
 
 /*Table structure for table `tbl_saldo` */
 
@@ -82,11 +83,11 @@ CREATE TABLE `tbl_tagihan` (
   `jumlah_bayar` float DEFAULT '0',
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id_tagihan`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_tagihan` */
 
-insert  into `tbl_tagihan`(`id_tagihan`,`tanggal_event`,`id_anggota`,`jumlah_bayar`,`tanggal`) values (31,'2019-02-02 13:16:56',1,20000,NULL),(32,'2019-02-02 13:16:56',3,17000,'2018-01-01'),(33,'2019-03-02 13:16:56',6,90,'2018-01-11');
+insert  into `tbl_tagihan`(`id_tagihan`,`tanggal_event`,`id_anggota`,`jumlah_bayar`,`tanggal`) values (1,'2019-02-02 05:57:57',1,100000,'2019-02-04'),(2,'2019-02-02 05:57:57',2,0,NULL);
 
 /*Table structure for table `tbl_user` */
 
@@ -135,15 +136,15 @@ DROP TABLE IF EXISTS `vw_tagihan`;
 /*!50001 DROP VIEW IF EXISTS `vw_tagihan` */;
 /*!50001 DROP TABLE IF EXISTS `vw_tagihan` */;
 
-/*!50001 CREATE TABLE  `vw_tagihan`(
- `id_tagihan` int(11) ,
- `tanggal_event` timestamp ,
- `id_anggota` int(11) ,
- `nama_pt` varchar(150) ,
- `nama_jenis` varchar(15) ,
- `jumlah_bayar` float ,
- `tanggal` date 
-)*/;
+/*!50001 CREATE TABLE `vw_tagihan` (
+  `id_tagihan` int(11) NOT NULL DEFAULT '0',
+  `tanggal_event` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `id_anggota` int(11) NOT NULL,
+  `nama_pt` varchar(150) NOT NULL,
+  `nama_jenis` varchar(15) DEFAULT NULL,
+  `jumlah_bayar` float DEFAULT NULL,
+  `tanggal` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 */;
 
 /*View structure for view vw_tagihan */
 
@@ -154,5 +155,3 @@ DROP TABLE IF EXISTS `vw_tagihan`;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

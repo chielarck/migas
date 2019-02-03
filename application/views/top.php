@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/uniform.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/maruti-style.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/maruti-media.css" class="skin-color" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/datepicker.css" class="skin-color" />
 
 <script src="<?php echo base_url(); ?>asset/js/jquery.min.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/jquery.ui.custom.js"></script> 
@@ -23,6 +24,8 @@
 <script src="<?php echo base_url(); ?>asset/js/maruti.tables.js"></script>
 <script src="<?php echo base_url(); ?>asset/js/jquery.inputmask.bundle.js"></script>
 <script src="<?php echo base_url(); ?>asset/js/jquery.dynamicTable-1.0.0.js"></script>
+<script src="<?php echo base_url(); ?>asset/js/bootstrap-datepicker.js"></script>
+
 
 <style type="text/css">
   .table td {
@@ -37,6 +40,10 @@
 
   .modal {
     margin-top: 5000px;
+  }
+
+  .datepicker {
+    z-index: 1000000
   }
 </style>
 
@@ -65,14 +72,15 @@
       <ul>
         <li><a href="<?php echo base_url(); ?>anggota">Master Anggota</a></li>
         <li><a href="<?php echo base_url(); ?>jenis">Master Jenis</a></li>
+        <li><a href="<?php echo base_url(); ?>group">Master Group</a></li>
       </ul>
     </li>
     <li> <a href="<?php echo base_url(); ?>penagihan"><i class="icon icon-folder-close"></i> <span>Penagihan</span></a> </li>
     <li> <a href="<?php echo base_url(); ?>kaskeluar"><i class="icon icon-folder-close"></i> <span>Kas Keluar</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-print"></i> <span>Laporan</span> <span><i class="icon-chevron-down"></i></span></a>
       <ul>
-        <li><a href="#belumjadi">Laporan Penagihan</a></li>
-        <li><a href="#belumjadi">Laporan Kas</a></li>
+        <li><a href="<?php echo base_url(); ?>laporan/penagihan">Laporan Penagihan</a></li>
+        <li><a href="<?php echo base_url(); ?>laporan/kaskeluar">Laporan Kas</a></li>
       </ul>
     </li>
   </ul>
@@ -85,12 +93,16 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">UBAH PASSWORD</h5>
       </div>
-      <form action="" method="post">
+      <form action="<?php echo base_url(); ?>Dashboard/ubah_password" method="post">
       <input type="hidden" name="tipe" value="add">
         <div class="modal-body">
           <div class="form-group">
-            <label class="bmd-label-floating"> Password Baru </label>
-            <input style="width: 50%;" id="tgl" type="text" class="form-control" name="password"  required>
+            <label> Password Lama </label>
+            <input style="width: 50%;" type="password" class="form-control" name="password_lama"  required>
+          </div>
+          <div class="form-group">
+            <label> Password Baru </label>
+            <input style="width: 50%;" type="password" class="form-control" name="password"  required>
           </div>
          
       </div>
