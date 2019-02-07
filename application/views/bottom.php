@@ -52,6 +52,12 @@
       // alert('aaa');
 >>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
     });
+
+  $(".ubah_data_saldo").click(function() {
+    $(".id_saldo").val($(this).attr('data-idsaldo'));
+    $(".jumlah").val($(this).attr('data-jumlah'));
+      // alert('aaa');
+    });
   $(".ubah_dataAnggota").click(function() {
     $(".id_anggota").val($(this).attr('data-idAnggota'));
     $(".no_pt").val($(this).attr('data-noPt'));

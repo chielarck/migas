@@ -73,6 +73,7 @@
         <li><a href="<?php echo base_url(); ?>anggota">Master Anggota</a></li>
         <li><a href="<?php echo base_url(); ?>jenis">Master Jenis</a></li>
         <li><a href="<?php echo base_url(); ?>group">Master Group</a></li>
+        <li><a href="<?php echo base_url(); ?>SaldoAwal">Master Saldo</a></li>
       </ul>
     </li>
     <li> <a href="<?php echo base_url(); ?>penagihan"><i class="icon icon-folder-close"></i> <span>Penagihan</span></a> </li>
