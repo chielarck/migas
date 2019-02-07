@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2019 at 04:25 AM
+-- Generation Time: Feb 07, 2019 at 05:39 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -77,7 +77,13 @@ CREATE TABLE `tbl_anggota` (
   `id_anggota` int(11) NOT NULL,
   `no_pt` varchar(50) DEFAULT NULL,
   `nama_pt` varchar(150) NOT NULL,
+  `pengurus_pt` varchar(100) NOT NULL,
+  `telepone_pt` varchar(15) NOT NULL,
+  `email_pt` varchar(100) NOT NULL,
+  `no_kta` varchar(100) NOT NULL,
+  `alamat_pt` text NOT NULL,
   `id_jenis` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
   `aktif` char(1) NOT NULL DEFAULT '1',
   `pemilik_pt` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -86,9 +92,10 @@ CREATE TABLE `tbl_anggota` (
 -- Dumping data for table `tbl_anggota`
 --
 
-INSERT INTO `tbl_anggota` (`id_anggota`, `no_pt`, `nama_pt`, `id_jenis`, `aktif`, `pemilik_pt`) VALUES
-(1, '1', '1', 1, '1', '1'),
-(2, '2', '2', 2, '1', '2');
+INSERT INTO `tbl_anggota` (`id_anggota`, `no_pt`, `nama_pt`, `pengurus_pt`, `telepone_pt`, `email_pt`, `no_kta`, `alamat_pt`, `id_jenis`, `id_group`, `aktif`, `pemilik_pt`) VALUES
+(1, '1', '1', '', '', '', '', '', 1, 0, '1', '1'),
+(2, '2', '2 AHBDS', 'Abu', '089251652', 'pt@mail.com', '-', 'Jl Agvhhnd n ', 2, 1, '1', '2AJGFA'),
+(3, '23456', 'qwertyui', 'wertyuio', 'wertyuio', 'qwert@mail.com', '123456', 'wertydfghcvbnf dfghjkl', 1, 1, '1', 'qwertyui');
 
 -- --------------------------------------------------------
 
@@ -182,7 +189,7 @@ CREATE TABLE `tbl_saldoawal` (
 --
 
 INSERT INTO `tbl_saldoawal` (`id_saldoawal`, `jumlah`) VALUES
-(1, 10000000);
+(1, 100000000);
 
 -- --------------------------------------------------------
 
@@ -327,7 +334,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_anggota`
 --
 ALTER TABLE `tbl_anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_group`
 --
