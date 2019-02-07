@@ -93,7 +93,7 @@ $bulan_arr = array(
                     $no = 1;
                     foreach($penagihan->result_array() as $data) { ?>
                     <tr id="<?php echo $data ['id_tagihan']; ?>">
-                                   <td style="display:none;"><?php echo $data['nama_jenis']; ?></td>
+                      <td style="display:none;"><?php echo $data['nama_jenis']; ?></td>
                       <td style="display:none;"><?php echo $data['id_tagihan']; ?></td>
                       <td style="text-align: center;"><?php echo $no; ?></td>
                       <td style="text-align: center;"><?php echo $data['nama_pt']; ?></td>

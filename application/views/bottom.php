@@ -42,15 +42,6 @@
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".nama_jenis").val($(this).attr('data-namaJenis'));
       // alert('aaa');
-<<<<<<< HEAD
-=======
-    });
-
-  $(".ubah_data_group").click(function() {
-    $(".id_group").val($(this).attr('data-idgroup'));
-    $(".nama_group").val($(this).attr('data-namagroup'));
-      // alert('aaa');
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
     });
 
   $(".ubah_data_saldo").click(function() {
@@ -64,10 +55,7 @@
     $(".nama_pt").val($(this).attr('data-namaPt'));
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".aktif").val($(this).attr('data-aktif'));
-<<<<<<< HEAD
     $(".pemilik_pt").val($(this).attr('data-pemilikPt'));
-=======
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 
 
       // alert('aaa');
@@ -78,10 +66,7 @@
     $(".keterangan").val($(this).attr('data-keterangan'));
     $(".jumlah_kas").val($(this).attr('data-jumlahKas'));
     $(".tanggal").val($(this).attr('data-tanggal'));
-<<<<<<< HEAD
     $(".jenis_kas").val($(this).attr('data-jenisKas'));
-=======
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 
     
       // alert('aaa');
