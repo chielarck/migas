@@ -43,10 +43,16 @@
 		              	<tr>
 		              		<th>No</th>
 		              		<th>Nomor PT </th>
+                      <th>NO KTA</th>
 		              		<th>Nama PT </th>
 		              		<th>Jenis</th>
+                      <th>Group</th>
                       <th>Pemilik PT</th>
+                      <th>Pengurus PT</th>
+                      <th>Telepon PT</th>
+                      <th>Email PT</th>
 		              		<th>Status</th>
+                      <th>Alamat PT</th>
 		              		<th>Aksi</th>
 		              	</tr>
 		              </thead>
@@ -55,6 +61,7 @@
 		              	<tr>
 		              		<td><?php echo $no; ?></td>
 		              		<td><?php echo $la->no_pt; ?></td>
+                      <td><?php echo $la->no_kta; ?></td>
 		              		<td><?php echo $la->nama_pt; ?></td>
 		              		<td style="text-align: center;">
 		              			<?php $data = $this->db->get('tbl_jenis')->result();
@@ -65,7 +72,20 @@
       								}
       				 			?>
 		              		</td>
+
+                      <td style="text-align: center;">
+                        <?php $data = $this->db->get('tbl_group')->result();
+                      foreach ($data as $jn) {
+                        if($la->id_group == $jn->id_group){
+                          echo $jn->nama_group;
+                        }
+                      }
+                    ?>
+                      </td>
                         <td  style="text-align: center;"><?php echo $la->pemilik_pt; ?></td>
+                        <td  style="text-align: center;"><?php echo $la->pengurus_pt; ?></td>
+                        <td  style="text-align: center;"><?php echo $la->telepone_pt; ?></td>
+                        <td  style="text-align: center;"><?php echo $la->email_pt; ?></td>
 		              		<td style="text-align: center;">
 		              			<?php
 
@@ -77,7 +97,19 @@
 		              				}
 		              			 ?>
 		              		</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataAnggota" href="" data-toggle="modal" data-target="#modalUbah" data-idAnggota="<?php echo $la->id_anggota; ?>" data-noPt="<?php echo $la->no_pt; ?>"  data-namaPt="<?php echo $la->nama_pt; ?>" data-idJenis="<?php echo $la->id_jenis; ?>" data-pemilikPt="<?php echo $la->pemilik_pt; ?>" data-aktif="<?php echo $la->aktif; ?>" > Ubah </a></td>
+                      <td  style="text-align: center;"><?php echo $la->alamat_pt; ?></td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataAnggota" href="" data-toggle="modal" data-target="#modalUbah" data-idJenis="<?php echo $la->id_jenis; ?>" 
+                      data-idGroup="<?php echo $la->id_group; ?>" 
+                      data-idAnggota="<?php echo $la->id_anggota; ?>" 
+                      data-noPt="<?php echo $la->no_pt; ?>" 
+                      data-noKta="<?php echo $la->no_kta; ?>"  
+                      data-namaPt="<?php echo $la->nama_pt; ?>"  
+                      data-pemilikPt="<?php echo $la->pemilik_pt; ?>"
+                      data-pengurusPt="<?php echo $la->pengurus_pt; ?>"
+                      data-teleponePt="<?php echo $la->telepone_pt; ?>"   
+                      data-emailPt="<?php echo $la->email_pt; ?>"    
+                      data-alamatPt="<?php echo $la->alamat_pt; ?>"  
+                      data-aktif="<?php echo $la->aktif; ?>" > Ubah </a></td>
 		              	</tr>
 		              	<?php  $no++; } ?>
 		              </tbody>
@@ -101,6 +133,29 @@
       <input type="hidden" name="tipe" value="add">
       	<div class="modal-body">
 	      	<?php echo form_open_multipart('jenis/ubah'); ?>
+          <div class="form-group">
+            <label class="bmd-label-floating">Jenis Perusahaan</label>
+            <select  class="form-control" name="id_jenis" required>
+              <option value= "">PILIH</option>
+              <?php $data = $this->db->get('tbl_jenis')->result();
+                foreach ($data as $jn) {
+               ?>
+              <option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Group Perusahaan</label>
+            <select  class="form-control" name="id_group" required>
+              <option value= "">PILIH</option>
+              <?php $data = $this->db->get('tbl_group')->result();
+                foreach ($data as $jn) {
+               ?>
+              <option value="<?php echo $jn->id_group; ?>"><?php echo $jn->nama_group; ?></option>
+              <?php } ?>
+            </select>
+          </div>
       		<div class="form-group">
       			<label class="bmd-label-floating">Nomor PT</label>
       			<input style="width: 80%;" type="text" class="form-control" name="no_pt" maxlength="50">
@@ -111,21 +166,36 @@
       			<input style="width: 80%;" type="text" class="form-control" name="nama_pt" maxlength="150" required>
       		</div>
 
-      		<div class="form-group">
-      			<label class="bmd-label-floating">Jenis Perusahaan</label>
-      			<select  class="form-control" name="id_jenis" required>
-      				<option value= "">PILIH</option>
-      				<?php $data = $this->db->get('tbl_jenis')->result();
-      					foreach ($data as $jn) {
-      				 ?>
-      				<option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
-      				<?php } ?>
-      			</select>
-      		</div>
-   <div class="form-group">
+          <div class="form-group">
+            <label class="bmd-label-floating">Pengurus PT</label>
+            <input style="width: 80%;" type="text" class="form-control" name="pengurus_pt" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Telepone PT</label>
+            <input style="width: 80%;" type="text" class="form-control" name="telepone_pt" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Email PT</label>
+            <input style="width: 80%;" type="text" class="form-control" name="email_pt" maxlength="150" required>
+          </div>
+
+         <div class="form-group">
             <label class="bmd-label-floating">Pemilik PT</label>
             <input style="width: 80%;" type="text" class="form-control" name="pemilik_pt" maxlength="150" required>
           </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">NO KTA</label>
+            <input style="width: 80%;" type="text" class="form-control" name="no_kta" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Alamat PT</label>
+            <textarea style="width: 80%;" type="text" class="form-control" name="alamat_pt" maxlength="150" required></textarea>
+          </div>
+
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>
       			<select  class="form-control" name="aktif" required>
@@ -153,7 +223,29 @@
       <?php echo form_open_multipart('anggota/ubah'); ?>
       <input type="hidden" id="id_anggota" name="id_anggota" class="id_anggota">
       	<div class="modal-body">
-	      	<?php echo form_open_multipart('jenis/simpan'); ?>
+          <div class="form-group">
+            <label class="bmd-label-floating">Jenis Perusahaan</label>
+            <select  class="form-control id_jenis" name="id_jenis" required>
+              <option value= "">PILIH</option>
+              <?php $data = $this->db->get('tbl_jenis')->result();
+                foreach ($data as $jn) {
+               ?>
+              <option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating">Group Perusahaan</label>
+            <select  class="form-control id_group" name="id_group" required>
+              <option value= "">PILIH</option>
+              <?php $data = $this->db->get('tbl_group')->result();
+                foreach ($data as $jn) {
+               ?>
+              <option value="<?php echo $jn->id_group; ?>"><?php echo $jn->nama_group; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+	      	
       		<div class="form-group">
       			<label class="bmd-label-floating">Nomor PT</label>
       			<input style="width: 80%;" type="text" class="form-control no_pt" name="no_pt" maxlength="50">
@@ -162,22 +254,33 @@
       		<div class="form-group">
       			<label class="bmd-label-floating">Nama PT</label>
       			<input style="width: 80%;" type="text" class="form-control nama_pt" name="nama_pt" maxlength="150" required>
-      		</div>
-
-      		<div class="form-group">
-      			<label class="bmd-label-floating">Jenis Perusahaan</label>
-      			<select  class="form-control id_jenis" name="id_jenis" required>
-      				<option value= "">PILIH</option>
-      				<?php $data = $this->db->get('tbl_jenis')->result();
-      					foreach ($data as $jn) {
-      				 ?>
-      				<option value="<?php echo $jn->id_jenis; ?>"><?php echo $jn->nama_jenis; ?></option>
-      				<?php } ?>
-      			</select>
-      		</div>
-      <div class="form-group">
+      		</div>      		
+          <div class="form-group">
             <label class="bmd-label-floating">Pemilik PT</label>
             <input style="width: 80%;" type="text" class="form-control pemilik_pt" name="pemilik_pt" maxlength="150" required>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating">Pengurus PT</label>
+            <input style="width: 80%;" type="text" class="form-control pengurus_pt" name="pengurus_pt" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Telepone PT</label>
+            <input style="width: 80%;" type="text" class="form-control telepone_pt" name="telepone_pt" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Email PT</label>
+            <input style="width: 80%;" type="text" class="form-control email_pt" name="email_pt" maxlength="150" required>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating">NO KTA</label>
+            <input style="width: 80%;" type="text" class="form-control no_kta" name="no_kta" maxlength="150" required>
+          </div>
+
+          <div class="form-group">
+            <label class="bmd-label-floating">Alamat PT</label>
+            <textarea style="width: 80%;" type="text" class="form-control alamat_pt" name="alamat_pt" maxlength="150" required></textarea>
           </div>
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>

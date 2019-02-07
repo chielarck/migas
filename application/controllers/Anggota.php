@@ -17,11 +17,18 @@ class anggota extends CI_Controller {
 	public function simpan(){
 		if($this->session->userdata('username') != "") { 
 		$data = array(
+				'id_jenis' => $this->input->post('id_jenis'),
+				'id_group' => $this->input->post('id_group'),
                 'no_pt' => $this->input->post('no_pt'),
                 'nama_pt' => $this->input->post('nama_pt'),
-                'id_jenis' => $this->input->post('id_jenis'),
-                'aktif' => $this->input->post('aktif'),   
-                'pemilik_pt' => $this->input->post('pemilik_pt')       
+                'pengurus_pt' => $this->input->post('pengurus_pt'),
+                'telepone_pt' => $this->input->post('telepone_pt'),
+                'email_pt' => $this->input->post('email_pt'),
+                'pemilik_pt' => $this->input->post('pemilik_pt'),
+                'no_kta' => $this->input->post('no_kta'),
+                'alamat_pt' => $this->input->post('alamat_pt'),
+                'aktif' => $this->input->post('aktif'),  
+                     
             );
 
 		if($this->db->insert('tbl_anggota', $data)){
@@ -34,13 +41,19 @@ class anggota extends CI_Controller {
 	public function ubah(){
 		if($this->session->userdata('username') != "") { 
 		$data = array(
+				'id_jenis' => $this->input->post('id_jenis'),
+				'id_group' => $this->input->post('id_group'),
                 'no_pt' => $this->input->post('no_pt'),
                 'nama_pt' => $this->input->post('nama_pt'),
-                'id_jenis' => $this->input->post('id_jenis'),
-                'aktif' => $this->input->post('aktif'),    
-                 'pemilik_pt' => $this->input->post('pemilik_pt')       
+                'pengurus_pt' => $this->input->post('pengurus_pt'),
+                'telepone_pt' => $this->input->post('telepone_pt'),
+                'email_pt' => $this->input->post('email_pt'),
+                'pemilik_pt' => $this->input->post('pemilik_pt'),
+                'no_kta' => $this->input->post('no_kta'),
+                'alamat_pt' => $this->input->post('alamat_pt'),
+                'aktif' => $this->input->post('aktif'),  
+                     
             );
-
 		if($this->db->update('tbl_anggota', $data, array('id_anggota' => $this->input->post('id_anggota')))){
             $this->session->set_flashdata("success","Ubah Berhasil");
             echo "<script>window.location.href='".base_url()."anggota"."';</script>";
