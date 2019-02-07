@@ -78,17 +78,10 @@ $bulan_arr = array(
                 <table id="data2" class="table table-bordered data-table">
                   <thead>
                     <tr>
-<<<<<<< HEAD
                       <th>No</th>
                       <th>Nama Perusahaan </th>
                       <th>Jenis Perusahaan</th>
                       <th>Pemilik Perusahaan</th>
-=======
-                      <th>ID</th>
-                      <th>No</th>
-                      <th>Nama Perusahaan </th>
-                      <th>Jenis Perusahaan</th>
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
                       <th>Jumlah Tagihan (Rp)</th>
                       <th>Tanggal</th>
                     </tr>
