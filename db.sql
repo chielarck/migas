@@ -1,6 +1,6 @@
 /*
-SQLyog Enterprise - MySQL GUI v7.14 
-MySQL - 5.6.16 : Database - db_migas
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.6.20 : Database - db_migas
 *********************************************************************
 */
 
@@ -8,9 +8,10 @@ MySQL - 5.6.16 : Database - db_migas
 
 /*!40101 SET SQL_MODE=''*/;
 
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_migas` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `db_migas`;
@@ -27,19 +28,12 @@ CREATE TABLE `tbl_anggota` (
   `aktif` char(1) NOT NULL DEFAULT '1',
   `pemilik_pt` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_anggota`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_anggota` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`id_jenis`,`aktif`,`pemilik_pt`) values (1,'1','1',1,'1','1'),(2,'2','2',2,'1','2');
 
-/*Data for the table `tbl_anggota` */
-
-insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`id_jenis`,`aktif`) values (1,'56.1242.434','PT SEJAHTERA ABADI',1,'1'),(2,'4242.3453','PT SATRIA BAJA HITAM',2,'1'),(3,'3232','PT Abadi Jaya',3,'1');
-
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 /*Table structure for table `tbl_jenis` */
 
 DROP TABLE IF EXISTS `tbl_jenis`;
@@ -48,19 +42,11 @@ CREATE TABLE `tbl_jenis` (
   `id_jenis` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jenis` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_jenis`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_jenis` */
 
 insert  into `tbl_jenis`(`id_jenis`,`nama_jenis`) values (1,'SPBU'),(2,'PSO'),(3,'SPBE'),(4,'HPE'),(5,'TRANSPORTIR');
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tbl_jenis` */
-
-insert  into `tbl_jenis`(`id_jenis`,`nama_jenis`) values (1,'SPBU'),(2,'PSO'),(3,'SPBE'),(4,'HPE');
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 
 /*Table structure for table `tbl_kaskeluar` */
 
@@ -73,19 +59,11 @@ CREATE TABLE `tbl_kaskeluar` (
   `jumlah_biaya` float DEFAULT NULL,
   `jenis_kas` enum('MASUK','KELUAR') DEFAULT NULL,
   PRIMARY KEY (`id_kaskeluar`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=693 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_kaskeluar` */
 
 insert  into `tbl_kaskeluar`(`id_kaskeluar`,`keterangan`,`tanggal`,`jumlah_biaya`,`jenis_kas`) values (118,'beli minyak di warung','2019-02-02',200000,'KELUAR'),(236,'Token Listrik PRO','2019-02-02',140000,'KELUAR'),(371,'kopi gratis\r\n','2019-02-20',20000,'MASUK'),(469,'siipp\r\n','2019-01-01',400000,'KELUAR'),(684,'BELI AYAM','2019-02-15',21000,'KELUAR'),(692,'THR','2019-02-28',180000,'MASUK');
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=470 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tbl_kaskeluar` */
-
-insert  into `tbl_kaskeluar`(`id_kaskeluar`,`keterangan`,`tanggal`,`jumlah_biaya`) values (118,'beli minyak di warung','2019-02-02',200000),(236,'Token Listrik','2019-02-02',14000),(469,'siipp\r\n','2019-01-01',400000);
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 
 /*Table structure for table `tbl_saldo` */
 
@@ -103,24 +81,17 @@ DROP TABLE IF EXISTS `tbl_tagihan`;
 
 CREATE TABLE `tbl_tagihan` (
   `id_tagihan` int(11) NOT NULL AUTO_INCREMENT,
-  `tanggal_event` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggal_event` date NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `jumlah_bayar` float DEFAULT '0',
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id_tagihan`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_tagihan` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+insert  into `tbl_tagihan`(`id_tagihan`,`tanggal_event`,`id_anggota`,`jumlah_bayar`,`tanggal`) values (4,'2019-01-01',1,0,NULL),(5,'2018-01-01',1,0,NULL),(6,'2018-05-01',1,0,NULL),(7,'2019-04-04',1,0,NULL),(8,'2019-04-10',2,0,NULL),(9,'2019-02-10',1,150000,NULL),(10,'2019-02-10',2,2000000000,'2019-02-07');
 
-/*Data for the table `tbl_tagihan` */
-
-insert  into `tbl_tagihan`(`id_tagihan`,`tanggal_event`,`id_anggota`,`jumlah_bayar`,`tanggal`) values (1,'2019-02-02 05:57:57',1,100000,'2019-02-04'),(2,'2019-02-02 05:57:57',2,0,NULL);
-
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 /*Table structure for table `tbl_user` */
 
 DROP TABLE IF EXISTS `tbl_user`;
@@ -142,33 +113,39 @@ insert  into `tbl_user`(`id_user`,`username`,`password`) values (1,'admin','123'
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `stored_bulanan`()
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `stored_bulanan`(IN bulan CHAR(20))
 BEGIN
 	DECLARE id,i,total,t,alt,xac INT;
-	set t =(SELECT COUNT(*)  FROM tbl_tagihan WHERE MONTH(tanggal_event)=MONTH(NOW()) AND YEAR(tanggal_event)=YEAR(NOW()));
-	IF (t<1 && t!=0) THEN	
+	declare tgl CHAR(20);
+	DECLARE tanggal DATE;
+	SET tgl=bulan;
+	set t =(SELECT COUNT(*)  FROM tbl_tagihan WHERE MONTH(tanggal_event)=MONTH(tgl) AND YEAR(tanggal_event)=YEAR(tgl));
+	IF (t<1) THEN	
 	SET total=(SELECT id_anggota FROM tbl_anggota ORDER BY id_anggota DESC LIMIT 1);
 	SET i=1;
+	if (total!=0) THEN
 	REPEAT
 	SET id=(SELECT id_anggota FROM tbl_anggota WHERE id_anggota=i AND aktif='1');
 	IF (id!=0) THEN
-	INSERT INTO tbl_tagihan(id_anggota) VALUES (id);
+	INSERT INTO tbl_tagihan(id_anggota,tanggal_event) VALUES (id,tgl);
 	END IF;
 	SET i = i + 1;
 	UNTIL i>total
         END REPEAT;
+        END IF;
 	ELSE
-	IF (t!=0) THEN
+	
         SET total=(SELECT id_anggota FROM tbl_anggota ORDER BY id_anggota DESC LIMIT 1);
 	SET i=1;
+	IF (total!=0) THEN
 	REPEAT
 	SET id=(SELECT id_anggota FROM tbl_anggota WHERE id_anggota=i AND aktif='1');
 	IF (id!=0) THEN
-	SET alt=(SELECT id_anggota FROM tbl_tagihan WHERE id_anggota=id AND MONTH(tanggal_event)=MONTH(NOW()) AND YEAR(tanggal_event)=YEAR(NOW()));
+	SET alt=(SELECT id_anggota FROM tbl_tagihan WHERE id_anggota=id AND MONTH(tanggal_event)=MONTH(tgl) AND YEAR(tanggal_event)=YEAR(tgl));
 	IF (alt!=0) THEN
 	SET xac=0;
 	ELSE
-	INSERT INTO tbl_tagihan(id_anggota) VALUES (id);
+	INSERT INTO tbl_tagihan(id_anggota,tanggal_event) VALUES (id,tgl);
 	END IF;	
 	END IF;
 	SET i = i + 1;
@@ -197,10 +174,9 @@ DROP TABLE IF EXISTS `vw_tagihan`;
 /*!50001 DROP VIEW IF EXISTS `vw_tagihan` */;
 /*!50001 DROP TABLE IF EXISTS `vw_tagihan` */;
 
-<<<<<<< HEAD
 /*!50001 CREATE TABLE  `vw_tagihan`(
  `id_tagihan` int(11) ,
- `tanggal_event` timestamp ,
+ `tanggal_event` date ,
  `id_anggota` int(11) ,
  `nama_pt` varchar(150) ,
  `pemilik_pt` varchar(100) ,
@@ -208,17 +184,6 @@ DROP TABLE IF EXISTS `vw_tagihan`;
  `jumlah_bayar` float ,
  `tanggal` date 
 )*/;
-=======
-/*!50001 CREATE TABLE `vw_tagihan` (
-  `id_tagihan` int(11) NOT NULL DEFAULT '0',
-  `tanggal_event` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `id_anggota` int(11) NOT NULL,
-  `nama_pt` varchar(150) NOT NULL,
-  `nama_jenis` varchar(15) DEFAULT NULL,
-  `jumlah_bayar` float DEFAULT NULL,
-  `tanggal` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 */;
->>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 
 /*View structure for view view_kas */
 
@@ -236,3 +201,5 @@ DROP TABLE IF EXISTS `vw_tagihan`;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
