@@ -20,8 +20,12 @@ class kaskeluar extends CI_Controller {
                 'id_kaskeluar' => rand(1,9).rand(1,9).rand(1,9),
                 'keterangan' => $this->input->post('keterangan'),
                 'jumlah_biaya' => $this->input->post('jumlah_biaya'),
+<<<<<<< HEAD
                 'tanggal' => date_format(date_create( $this->input->post('tanggal')),"Y-m-d"),
                 'jenis_kas' => $this->input->post('jenis_kas')
+=======
+                'tanggal' => date_format(date_create( $this->input->post('tanggal')),"Y-m-d")
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
             );
 
 		if($this->db->insert('tbl_kaskeluar', $data)){
@@ -36,7 +40,10 @@ class kaskeluar extends CI_Controller {
 		$data = array(
                 'keterangan' => $this->input->post('keterangan'),
                 'jumlah_biaya' => $this->input->post('jumlah_biaya'),
+<<<<<<< HEAD
                  'jenis_kas' => $this->input->post('jenis_kas'),
+=======
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
                 'tanggal' => date_format(date_create( $this->input->post('tanggal')),"Y-m-d")
             );
 

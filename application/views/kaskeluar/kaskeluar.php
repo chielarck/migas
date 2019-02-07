@@ -54,10 +54,16 @@
 		              	<tr>
 		              		<td><?php echo $no; ?></td>
 		              		<td><?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?></td>
+<<<<<<< HEAD
                       <td style="text-align: center;"><?php echo $lk->jenis_kas; ?></td>
 		              		<td class="rupiah"><?php echo $lk->jumlah_biaya; ?></td>
 		              		<td><?php echo $lk->keterangan; ?></td>
 		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataKas" href="" data-toggle="modal" data-target="#modalUbah" data-idKas="<?php echo $lk->id_kaskeluar; ?>" data-jenisKas="<?php echo $lk->jenis_kas; ?>" data-keterangan="<?php echo $lk->keterangan; ?>" data-tanggal="<?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?>" data-jumlahKas="<?php echo $lk->jumlah_biaya; ?>" > Edit </a></td>
+=======
+		              		<td class="rupiah"><?php echo $lk->jumlah_biaya; ?></td>
+		              		<td><?php echo $lk->keterangan; ?></td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataKas" href="" data-toggle="modal" data-target="#modalUbah" data-idKas="<?php echo $lk->id_kaskeluar; ?>" data-keterangan="<?php echo $lk->keterangan; ?>" data-tanggal="<?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?>" data-jumlahKas="<?php echo $lk->jumlah_biaya; ?>" > Edit </a></td>
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
 		              	</tr>
 
 		              	<?php $no++; } ?>
@@ -124,6 +130,7 @@
       			<label> Tanggal </label>
       			<input style="width: 50%;" id="tanggal" type="text" placeholder="<?php echo date('d-m-Y'); ?>" class="form-control input-tanggal tanggal" name="tanggal"  required>
       		</div>
+<<<<<<< HEAD
               <div class="form-group">
             <label class="bmd-label-floating">Jenis Kas</label>
             <select  class="form-control jenis_kas" name="jenis_kas" required>
@@ -131,6 +138,8 @@
               <option value="MASUK">MASUK</option>
             </select>
           </div>
+=======
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
       		<div class="form-group">
       			<label> Jumlah Biaya (Rp) </label>
       			<input style="width: 80%;" type="text" class="form-control rupiah jumlah_kas" name="jumlah_biaya"  required>

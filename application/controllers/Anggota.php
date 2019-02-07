@@ -20,8 +20,12 @@ class anggota extends CI_Controller {
                 'no_pt' => $this->input->post('no_pt'),
                 'nama_pt' => $this->input->post('nama_pt'),
                 'id_jenis' => $this->input->post('id_jenis'),
+<<<<<<< HEAD
                 'aktif' => $this->input->post('aktif'),   
                 'pemilik_pt' => $this->input->post('pemilik_pt')       
+=======
+                'aktif' => $this->input->post('aktif')       
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
             );
 
 		if($this->db->insert('tbl_anggota', $data)){
@@ -37,8 +41,12 @@ class anggota extends CI_Controller {
                 'no_pt' => $this->input->post('no_pt'),
                 'nama_pt' => $this->input->post('nama_pt'),
                 'id_jenis' => $this->input->post('id_jenis'),
+<<<<<<< HEAD
                 'aktif' => $this->input->post('aktif'),    
                  'pemilik_pt' => $this->input->post('pemilik_pt')       
+=======
+                'aktif' => $this->input->post('aktif')       
+>>>>>>> c31ac172c1342aed8f233ecfffbadfa362979a2c
             );
 
 		if($this->db->update('tbl_anggota', $data, array('id_anggota' => $this->input->post('id_anggota')))){
