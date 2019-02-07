@@ -45,8 +45,9 @@
 		              		<th>Nomor PT </th>
 		              		<th>Nama PT </th>
 		              		<th>Jenis</th>
+                      <th>Pemilik PT</th>
 		              		<th>Status</th>
-		              		<th></th>
+		              		<th>Aksi</th>
 		              	</tr>
 		              </thead>
 		              <tbody>
@@ -64,6 +65,7 @@
       								}
       				 			?>
 		              		</td>
+                        <td  style="text-align: center;"><?php echo $la->pemilik_pt; ?></td>
 		              		<td style="text-align: center;">
 		              			<?php
 
@@ -75,7 +77,7 @@
 		              				}
 		              			 ?>
 		              		</td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataAnggota" href="" data-toggle="modal" data-target="#modalUbah" data-idAnggota="<?php echo $la->id_anggota; ?>" data-noPt="<?php echo $la->no_pt; ?>"  data-namaPt="<?php echo $la->nama_pt; ?>" data-idJenis="<?php echo $la->id_jenis; ?>" data-aktif="<?php echo $la->aktif; ?>" > Ubah </a></td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataAnggota" href="" data-toggle="modal" data-target="#modalUbah" data-idAnggota="<?php echo $la->id_anggota; ?>" data-noPt="<?php echo $la->no_pt; ?>"  data-namaPt="<?php echo $la->nama_pt; ?>" data-idJenis="<?php echo $la->id_jenis; ?>" data-pemilikPt="<?php echo $la->pemilik_pt; ?>" data-aktif="<?php echo $la->aktif; ?>" > Ubah </a></td>
 		              	</tr>
 		              	<?php  $no++; } ?>
 		              </tbody>
@@ -120,7 +122,10 @@
       				<?php } ?>
       			</select>
       		</div>
-
+   <div class="form-group">
+            <label class="bmd-label-floating">Pemilik PT</label>
+            <input style="width: 80%;" type="text" class="form-control" name="pemilik_pt" maxlength="150" required>
+          </div>
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>
       			<select  class="form-control" name="aktif" required>
@@ -170,7 +175,10 @@
       				<?php } ?>
       			</select>
       		</div>
-
+      <div class="form-group">
+            <label class="bmd-label-floating">Pemilik PT</label>
+            <input style="width: 80%;" type="text" class="form-control pemilik_pt" name="pemilik_pt" maxlength="150" required>
+          </div>
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>
       			<select  class="form-control aktif" name="aktif" required>
@@ -178,6 +186,7 @@
       				<option value="0">TIDAK AKTIF</option>
       			</select>
       		</div>
+
 	    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

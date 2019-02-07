@@ -78,10 +78,10 @@ $bulan_arr = array(
                 <table id="data2" class="table table-bordered data-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>No</th>
                       <th>Nama Perusahaan </th>
                       <th>Jenis Perusahaan</th>
+                      <th>Pemilik Perusahaan</th>
                       <th>Jumlah Tagihan (Rp)</th>
                       <th>Tanggal</th>
                     </tr>
@@ -91,12 +91,14 @@ $bulan_arr = array(
                     $no = 1;
                     foreach($penagihan->result_array() as $data) { ?>
                     <tr id="<?php echo $data ['id_tagihan']; ?>">
-                      <td><?php echo $data['id_tagihan']; ?></td>
-                      <td><?php echo $no; ?></td>
-                      <td><?php echo $data['nama_pt']; ?></td>
-                      <td><?php echo $data['nama_jenis']; ?></td>
-                      <td ><?php echo number_format($data['jumlah_bayar']); ?></td>
-                      <td ><?php if(!empty($data['tanggal']) && $data['tanggal'] != "0000-00-00") echo $data['tanggal']; ?></td>
+                                   <td style="display:none;"><?php echo $data['nama_jenis']; ?></td>
+                      <td style="display:none;"><?php echo $data['id_tagihan']; ?></td>
+                      <td style="text-align: center;"><?php echo $no; ?></td>
+                      <td style="text-align: center;"><?php echo $data['nama_pt']; ?></td>
+                      <td style="text-align: center;"><?php echo $data['nama_jenis']; ?></td>
+                       <td style="text-align: center;"><?php echo $data['pemilik_pt']; ?></td>
+                      <td style="text-align: right;" font-size"18" class="biaya<?php echo $data['id_tagihan']; ?>"><?php echo number_format($data['jumlah_bayar']); ?></td>
+                      <td style="text-align: center;"><?php if(!empty($data['tanggal']) && $data['tanggal'] != "0000-00-00") echo $data['tanggal']; ?></td>
                       </tr>
                         <?php $no++; } ?>
                   </tbody>
@@ -113,16 +115,21 @@ $bulan_arr = array(
     deleteButton: false,
     editButton: false,      
     columns: {
-      identifier: [0, 'id_tagihan'],                    
-      editable: [[4, 'jumlah_bayar'], [5, 'tanggal']]
+      identifier: [1, 'id_tagihan'],                    
+      editable: [[6, 'jumlah_bayar'], [7, 'tanggal']]
+    },
+    hideIdentifier: true,
+    url: '<?php echo base_url(); ?>penagihan/live' ,
+    onSuccess: function(data) {
+      $(".biaya"+data.id_tagihan).html(data.jumlah_bayar);
     },
     onDraw: function() {
-      $('table tr td:nth-child(5) input').each(function() {
+      $('table tr td:nth-child(7) input').each(function() {
         $('.rupiah').inputmask('decimal', {allowMinus:false, autoGroup: true, groupSeparator: '.', rightAlign: false, autoUnmask: true, removeMaskOnSubmit: true});
         $(this).addClass("rupiah");
       });
 
-      $('table tr td:nth-child(6) input').each(function() {
+      $('table tr td:nth-child(8) input').each(function() {
         $(this).datepicker({
           format: 'yyyy-mm-dd',
           todayHighlight: true,
@@ -131,8 +138,6 @@ $bulan_arr = array(
           $(this).datepicker('hide');
         });
       });
-    },
-    hideIdentifier: true,
-    url: '<?php echo base_url(); ?>penagihan/live'    
+    }       
   });
 </script>

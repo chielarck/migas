@@ -75,7 +75,7 @@
       </ul>
     </li>
     <li> <a href="<?php echo base_url(); ?>penagihan"><i class="icon icon-folder-close"></i> <span>Penagihan</span></a> </li>
-    <li> <a href="<?php echo base_url(); ?>kaskeluar"><i class="icon icon-folder-close"></i> <span>Kas Keluar</span></a> </li>
+    <li> <a href="<?php echo base_url(); ?>kaskeluar"><i class="icon icon-folder-close"></i> <span>Kas</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-print"></i> <span>Laporan</span> <span><i class="icon-chevron-down"></i></span></a>
       <ul>
         <li><a href="<?php echo base_url(); ?>laporan/penagihan">Laporan Penagihan</a></li>

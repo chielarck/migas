@@ -2,7 +2,7 @@
     <div id="content-header">
         <div id="breadcrumb">
             <a href="#" style="font-size: 14px;">Master</a>
-            <a href="<?php echo base_url().'/'.$this->uri->segment(1); ?>" style="font-size: 14px;">Data Kas Kelaur</a>
+            <a href="<?php echo base_url().'/'.$this->uri->segment(1); ?>" style="font-size: 14px;">Data Kas Masuk/Keluar</a>
         </div>
     </div>
     <div class="container-fluid">
@@ -42,6 +42,7 @@
 		              	<tr>
 		              		<th>No</th>
 		              		<th>Tanggal</th>
+                      <th>Jenis Kas</th>
 		              		<th>Jumlah Biaya (Rp)</th>
 		              		<th>Keterangan</th>
 		              		<th></th>
@@ -53,9 +54,10 @@
 		              	<tr>
 		              		<td><?php echo $no; ?></td>
 		              		<td><?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?></td>
+                      <td style="text-align: center;"><?php echo $lk->jenis_kas; ?></td>
 		              		<td class="rupiah"><?php echo $lk->jumlah_biaya; ?></td>
 		              		<td><?php echo $lk->keterangan; ?></td>
-		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataKas" href="" data-toggle="modal" data-target="#modalUbah" data-idKas="<?php echo $lk->id_kaskeluar; ?>" data-keterangan="<?php echo $lk->keterangan; ?>" data-tanggal="<?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?>" data-jumlahKas="<?php echo $lk->jumlah_biaya; ?>" > Edit </a></td>
+		              		<td style="text-align: center;"><a class="btn btn-danger btn-mini ubah_dataKas" href="" data-toggle="modal" data-target="#modalUbah" data-idKas="<?php echo $lk->id_kaskeluar; ?>" data-jenisKas="<?php echo $lk->jenis_kas; ?>" data-keterangan="<?php echo $lk->keterangan; ?>" data-tanggal="<?php echo date_format(date_create($lk->tanggal),"d-m-Y"); ?>" data-jumlahKas="<?php echo $lk->jumlah_biaya; ?>" > Edit </a></td>
 		              	</tr>
 
 		              	<?php $no++; } ?>
@@ -83,6 +85,13 @@
       			<label> Tanggal </label>
       			<input style="width: 50%;" type="text"  class="form-control input-tanggal tgl" name="tanggal"  required>
       		</div>
+              <div class="form-group">
+            <label class="bmd-label-floating">Jenis Kas</label>
+            <select  class="form-control" name="jenis_kas" required>
+              <option value="KELUAR">KELUAR</option>
+              <option value="MASUK">MASUK</option>
+            </select>
+          </div>
       		<div class="form-group">
       			<label> Jumlah Biaya (Rp) </label>
       			<input style="width: 80%;" type="text" class="form-control rupiah" name="jumlah_biaya"  required>
@@ -115,6 +124,13 @@
       			<label> Tanggal </label>
       			<input style="width: 50%;" id="tanggal" type="text" placeholder="<?php echo date('d-m-Y'); ?>" class="form-control input-tanggal tanggal" name="tanggal"  required>
       		</div>
+              <div class="form-group">
+            <label class="bmd-label-floating">Jenis Kas</label>
+            <select  class="form-control jenis_kas" name="jenis_kas" required>
+              <option value="KELUAR">KELUAR</option>
+              <option value="MASUK">MASUK</option>
+            </select>
+          </div>
       		<div class="form-group">
       			<label> Jumlah Biaya (Rp) </label>
       			<input style="width: 80%;" type="text" class="form-control rupiah jumlah_kas" name="jumlah_biaya"  required>

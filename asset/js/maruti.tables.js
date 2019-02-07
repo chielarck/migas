@@ -5,7 +5,7 @@ $(document).ready(function(){
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers",
 		"bInfo" : false,
-	    "bLengthChange": false
+		"bLengthChange": false,
 	});
 	
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();

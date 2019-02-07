@@ -49,6 +49,7 @@
     $(".nama_pt").val($(this).attr('data-namaPt'));
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".aktif").val($(this).attr('data-aktif'));
+    $(".pemilik_pt").val($(this).attr('data-pemilikPt'));
 
 
       // alert('aaa');
@@ -59,6 +60,7 @@
     $(".keterangan").val($(this).attr('data-keterangan'));
     $(".jumlah_kas").val($(this).attr('data-jumlahKas'));
     $(".tanggal").val($(this).attr('data-tanggal'));
+    $(".jenis_kas").val($(this).attr('data-jenisKas'));
 
     
       // alert('aaa');

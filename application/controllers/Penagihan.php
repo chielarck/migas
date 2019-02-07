@@ -53,6 +53,9 @@ public function __construct(){
 			if($update_field && $input['id_tagihan']) {
 				$this->db->query("UPDATE tbl_tagihan SET $update_field WHERE id_tagihan='" . $input['id_tagihan'] . "'");		
 			}
+			$in['id_tagihan'] = $input['id_tagihan'];
+			$in['jumlah_bayar'] =  number_format($input['jumlah_bayar']);
+			echo json_encode($in);
 		}
 
 
