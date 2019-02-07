@@ -78,6 +78,8 @@ $bulan_arr = array(
                 <table id="data2" class="table table-bordered data-table">
                   <thead>
                     <tr>
+                    <th style="display:none;">Nama Perusahaan </th>
+                    <th style="display:none;">Nama Perusahaan </th>
                       <th>No</th>
                       <th>Nama Perusahaan </th>
                       <th>Jenis Perusahaan</th>

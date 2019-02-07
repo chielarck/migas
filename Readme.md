@@ -1,3 +1,1 @@
-Frontend yang udah dibuat :
-- master 
-- tagihan
+GO GO GO GO GO GO
