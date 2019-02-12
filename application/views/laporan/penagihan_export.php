@@ -20,13 +20,15 @@ $bulan_arr = array(
                 );
 
 ?>
-                <p>Laporan Penagihan <?php echo $bulan_arr[$bulan].' '.$tahun; ?></p>
+                <p>Laporan Penagihan <?php if($bulan != 'ALL') echo $bulan_arr[$bulan].' '.$tahun; else echo ' SEMUA BULAN '.$tahun; ?></p>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>Bulan Tahun</th>
                       <th>Nama Perusahaan </th>
                       <th>Jenis Perusahaan</th>
+                      <th>Group</th>
                       <th>Jumlah Tagihan (Rp)</th>
                       <th>Tanggal</th>
                       <th>Status</th>
@@ -41,8 +43,10 @@ $bulan_arr = array(
                       ?>
                     <tr>
                       <td><?php echo $no; ?></td>
+                      <td><?php echo $bulan_arr[date("m", strtotime($data['tanggal_event']))].' '.date("Y",strtotime($data['tanggal_event'])); ?></td>
                       <td><?php echo $data['nama_pt']; ?></td>
                       <td><?php echo $data['nama_jenis']; ?></td>
+                      <td><?php echo $data['nama_group']; ?></td>
                       <td style="text-align: right;"><?php echo $data['jumlah_bayar']; ?></td>
                       <td style="text-align: center;"><?php if(!empty($data['tanggal']) && $data['tanggal'] != "0000-00-00") echo $data['tanggal']; ?></td>
                       <td style="text-align: center;">
@@ -51,7 +55,7 @@ $bulan_arr = array(
                       </tr>
                         <?php $no++; } ?>
                       <tr>
-                        <td colspan="3" style="text-align: right;font-weight: bold;">Total (Rp)</td>
+                        <td colspan="5" style="text-align: right;font-weight: bold;">Total (Rp)</td>
                         <td style="text-align: right;font-weight: bold;"><?php echo $total; ?></td>
                         <td colspan="2"></td>
                       </tr>

@@ -9,6 +9,8 @@
 
 <script type="text/javascript">
   $("input").attr("autocomplete", "off");
+  $('.select2').select2();
+
   $('.rupiah').inputmask('decimal', {allowMinus:false, autoGroup: true, groupSeparator: '.', rightAlign: false, autoUnmask: true, removeMaskOnSubmit: true});
   $('.tgl').datepicker({
     format: "dd-mm-yyyy",
@@ -42,15 +44,6 @@
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".nama_jenis").val($(this).attr('data-namaJenis'));
       // alert('aaa');
-<<<<<<< HEAD
-=======
-    });
-
-  $(".ubah_data_group").click(function() {
-    $(".id_group").val($(this).attr('data-idgroup'));
-    $(".nama_group").val($(this).attr('data-namagroup'));
-      // alert('aaa');
->>>>>>> da7e880d54728ddfec168a99894b455805e0cd69
     });
 
   $(".ubah_data_saldo").click(function() {
@@ -65,7 +58,6 @@
     $(".no_pt").val($(this).attr('data-noPt'));
     $(".no_kta").val($(this).attr('data-noKta'));
     $(".nama_pt").val($(this).attr('data-namaPt'));
-<<<<<<< HEAD
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".aktif").val($(this).attr('data-aktif'));
     $(".pemilik_pt").val($(this).attr('data-pemilikPt'));
@@ -73,16 +65,6 @@
 
       // alert('aaa');
     });
-=======
-    $(".pemilik_pt").val($(this).attr('data-pemilikPt'));
-    $(".pengurus_pt").val($(this).attr('data-pengurusPt'));
-    $(".telepone_pt").val($(this).attr('data-teleponePt'));
-    $(".email_pt").val($(this).attr('data-emailPt'));
-    $(".alamat_pt").val($(this).attr('data-alamatPt'));
-    $(".aktif").val($(this).attr('data-aktif'));
-    
-     });
->>>>>>> da7e880d54728ddfec168a99894b455805e0cd69
 
     $(".ubah_dataKas").click(function() {
     $(".id_kas").val($(this).attr('data-idKas'));
@@ -90,14 +72,19 @@
     $(".jumlah_kas").val($(this).attr('data-jumlahKas'));
     $(".tanggal").val($(this).attr('data-tanggal'));
     $(".jenis_kas").val($(this).attr('data-jenisKas'));
-<<<<<<< HEAD
-=======
-
->>>>>>> da7e880d54728ddfec168a99894b455805e0cd69
 
     
       // alert('aaa');
     });
+
+
+    $(".ubah_data_group").click(function() {
+    $(".id_group").val($(this).attr('data-idgroup'));
+    $(".nama_group").val($(this).attr('data-namagroup'));
+      // alert('aaa');
+    });
+
+
   </script>
 
 

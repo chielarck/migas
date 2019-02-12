@@ -30,7 +30,7 @@ $bulan_arr = array(
           <div class="span12">
             <br>
             <div class="row-fluid" style="margin: 0;">
-              <div class="span6">
+              <div class="span8">
                 <form action="<?php echo base_url(); ?>Penagihan/filter_bulan" method="post">
                 <select style="margin: 0;" name="bulan">
                   <option value="01" <?php if($bulan == '01') echo 'selected'; ?>>JANUARI</option>
@@ -54,11 +54,9 @@ $bulan_arr = array(
               } 
             ?> 
                 </select>
-                <button style="margin: 0;"  class="btn btn-primary">Tampilkan Data</button> 
+                <button style="margin: 0;"   class="btn btn-primary" name="simpan" value="tampil">Tampilkan Data</button> 
+                <button style="margin: 0;"  class="btn btn-danger" name="simpan" value="buat">Buat Tagihan</button> 
                 </form>
-              </div>
-              <div class="span6" style="text-align: right;">
-                <a class="btn btn-danger" href="<?php echo base_url(); ?>penagihan/generate">Buat Tagihan</a>
               </div>
             </div>
 

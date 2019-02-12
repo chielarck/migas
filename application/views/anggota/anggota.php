@@ -147,7 +147,7 @@
 
           <div class="form-group">
             <label class="bmd-label-floating">Group Perusahaan</label>
-            <select  class="form-control" name="id_group" required>
+            <select  class="form-control" name="id_group">
               <option value= "">PILIH</option>
               <?php $data = $this->db->get('tbl_group')->result();
                 foreach ($data as $jn) {
@@ -172,28 +172,28 @@
           </div>
 
           <div class="form-group">
-            <label class="bmd-label-floating">Telepone PT</label>
-            <input style="width: 80%;" type="text" class="form-control" name="telepone_pt" maxlength="150" required>
+            <label class="bmd-label-floating">Telephone PT</label>
+            <input style="width: 80%;" type="text" class="form-control" name="telepone_pt" maxlength="150" >
           </div>
 
           <div class="form-group">
             <label class="bmd-label-floating">Email PT</label>
-            <input style="width: 80%;" type="text" class="form-control" name="email_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control" name="email_pt" maxlength="150" >
           </div>
 
          <div class="form-group">
             <label class="bmd-label-floating">Pemilik PT</label>
-            <input style="width: 80%;" type="text" class="form-control" name="pemilik_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control" name="pemilik_pt" maxlength="150" >
           </div>
 
           <div class="form-group">
             <label class="bmd-label-floating">NO KTA</label>
-            <input style="width: 80%;" type="text" class="form-control" name="no_kta" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control" name="no_kta" maxlength="150" >
           </div>
 
           <div class="form-group">
             <label class="bmd-label-floating">Alamat PT</label>
-            <textarea style="width: 80%;" type="text" class="form-control" name="alamat_pt" maxlength="150" required></textarea>
+            <textarea style="width: 80%;" type="text" class="form-control" name="alamat_pt" maxlength="150" ></textarea>
           </div>
 
       		<div class="form-group">
@@ -236,7 +236,7 @@
           </div>
           <div class="form-group">
             <label class="bmd-label-floating">Group Perusahaan</label>
-            <select  class="form-control id_group" name="id_group" required>
+            <select  class="form-control id_group" name="id_group" >
               <option value= "">PILIH</option>
               <?php $data = $this->db->get('tbl_group')->result();
                 foreach ($data as $jn) {
@@ -257,11 +257,11 @@
       		</div>      		
           <div class="form-group">
             <label class="bmd-label-floating">Pemilik PT</label>
-            <input style="width: 80%;" type="text" class="form-control pemilik_pt" name="pemilik_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control pemilik_pt" name="pemilik_pt" maxlength="150" >
           </div>
           <div class="form-group">
             <label class="bmd-label-floating">Pengurus PT</label>
-            <input style="width: 80%;" type="text" class="form-control pengurus_pt" name="pengurus_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control pengurus_pt" name="pengurus_pt" maxlength="150" >
           </div>
 
           <div class="form-group">
@@ -275,12 +275,12 @@
           </div>
           <div class="form-group">
             <label class="bmd-label-floating">NO KTA</label>
-            <input style="width: 80%;" type="text" class="form-control no_kta" name="no_kta" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control no_kta" name="no_kta" maxlength="150" >
           </div>
 
           <div class="form-group">
             <label class="bmd-label-floating">Alamat PT</label>
-            <textarea style="width: 80%;" type="text" class="form-control alamat_pt" name="alamat_pt" maxlength="150" required></textarea>
+            <textarea style="width: 80%;" type="text" class="form-control alamat_pt" name="alamat_pt" maxlength="150" ></textarea>
           </div>
       		<div class="form-group">
       			<label class="bmd-label-floating">Status</label>

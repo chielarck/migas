@@ -9,9 +9,9 @@ public function __construct(){
 	public function index() {
 
 		if($this->session->userdata('username') != "") { 
-			$d['penagihan'] = $this->Penagihan_model->get_penagihan();
 			$d['bulan'] = date("m");
 			$d['tahun'] = date("Y");
+			$d['penagihan'] = $this->Penagihan_model->get_penagihan($d);
 			$this->load->view('top',$d);
 			$this->load->view('penagihan/penagihan');
 			$this->load->view('bottom');
@@ -21,15 +21,14 @@ public function __construct(){
 	}
 
 
+	
 	public function generate() {
-		$this->db->query("CALL stored_bulanan()");
-		redirect(base_url().'penagihan');
-	}
-
-		public function filter_bulan() {
 		if($this->input->method(TRUE) == 'POST' && !empty($_POST)) {
+			
+			
 			$in['bulan'] = $this->input->post('bulan');
 			$in['tahun'] = $this->input->post('tahun');
+			
 			$d['penagihan']=$this->Penagihan_model->cek($in);
 			$d['bulan'] = $this->input->post("bulan");
 			$d['tahun'] = $this->input->post("tahun");
@@ -40,7 +39,28 @@ public function __construct(){
 		} else {
 			redirect(base_url());
 		}
+	}
+		
+
+	public function filter_bulan() {
+		if($this->input->method(TRUE) == 'POST' && !empty($_POST)) {
+			$in['bulan'] = $this->input->post('bulan');
+			$in['tahun'] = $this->input->post('tahun');
+			if($this->input->post("simpan") == 'buat') {
+				$panggil = $in['tahun'].'-'.$in['bulan'].'-'.$in['bulan'];
+				$this->db->query("CALL stored_bulanan('$panggil')");
+			}
+			$d['penagihan']=$this->Penagihan_model->cek($in);
+			$d['bulan'] = $this->input->post("bulan");
+			$d['tahun'] = $this->input->post("tahun");
+			$this->load->view('top',$d);
+			$this->load->view('penagihan/penagihan');
+			$this->load->view('bottom');
+			
+		} else {
+			redirect(base_url());
 		}
+	}
 		public function live() {
 			$input = filter_input_array(INPUT_POST);
 			if ($input['action'] == 'edit') {	

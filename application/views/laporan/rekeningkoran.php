@@ -21,19 +21,25 @@ $bulan_arr = array(
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb">
-            <a href="#" style="font-size: 14px;">Laporan Kas Keluar</a>
-            <a href="#" style="font-size: 14px;"><?php echo $bulan_arr[$bulan].' '.$tahun; ?></a>
+            <a href="#" style="font-size: 14px;">Laporan Penagihan</a>
+            <a href="#" style="font-size: 14px;"><?php if($bulan != 'ALL') echo $bulan_arr[$bulan].' '.$tahun; else echo ' SEMUA BULAN '.$tahun; ?></a>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid" style="margin: 0;">
           <div class="span12">
             <br>
+            <div class="row-fluid">
+                <div class="span12" style="text-align: center;">
+                  <a class="btn btn-danger" href="<?php echo base_url().'laporan/rekeningkoran_export/'.$bulan.'/'.$tahun; ?>" target="_blank">Export to Excel</a>
+                </div>
+            </div>
+            <br>
             <div class="row-fluid" style="margin: 0;">
-              <div class="span10">
-                <form action="<?php echo base_url(); ?>laporan/cari_kaskeluar" method="post">
-                <select style="margin: 0;" name="bulan">
-                  <option value>PILIH BULAN</option>
+              <div class="span12">
+                <form action="<?php echo base_url(); ?>laporan/cari_rekening" method="post">
+                <select style="margin: 0;width:170px;" name="bulan">
+                  <option value="ALL">[ SEMUA BULAN ]</option>
                   <option value="01" <?php if($bulan == '01') echo 'selected'; ?>>JANUARI</option>
                   <option value="02"  <?php if($bulan == '02') echo 'selected'; ?>>FEBRUARI</option>
                   <option value="03" <?php if($bulan == '03') echo 'selected'; ?>>MARET</option>
@@ -47,49 +53,52 @@ $bulan_arr = array(
                   <option value="11" <?php if($bulan == '11') echo 'selected'; ?>>NOVEMBER</option>
                   <option value="12" <?php if($bulan == '12') echo 'selected'; ?>>DESEMBER</option>
                 </select>
-                 <select style="margin: 0;" name="tahun">  
+                 <select style="margin: 0;width:100px;" name="tahun">  
                       <?php
             for ($x=date("Y")-10; $x<=date("Y"); $x++)
               {
-                echo'<option selected value="'.$x.'">'.$x.'</option>'; 
+                if($x == $tahun) {
+                  $selected = 'selected';
+                } else {
+                  $selected = '';
+                }
+                echo'<option value="'.$x.'" '.$selected.'>'.$x.'</option>'; 
               } 
             ?> 
                 </select>
+               
                 <button style="margin: 0;"  class="btn btn-primary">Tampilkan Data</button> 
                 </form>
               </div>
-              <div class="span2" style="text-align: right;">
-                  <a class="btn btn-danger" href="<?php echo base_url().'laporan/kaskeluar_export/'.$bulan.'/'.$tahun; ?>" target="_blank">Export to Excel</a>
-              </div>
             </div>
+              
 
             <div class="widget-box">
               <div class="widget-content nopadding">
                      
               </div>
                      
-                 <table class="table table-bordered">
+                <table class="table table-bordered data-table">
                   <thead>
                     <tr>
-                      <th>No</th>
                       <th>Tanggal</th>
-                      <th>Keterangan</th>
-                      <th>Jumlah Biaya (Rp)</th>
+                      <th>Deskripsi </th>
+                      <th>Debit</th>
+                      <th>Kredit</th>
+                      <th>Balance</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $total= 0; $no =1; foreach ($kaskeluar->result_array() as $data) { $total += $data['jumlah_biaya']; ?>
-
-                    <tr>
-                      <td><?php echo $no; ?></td>
-                      <td><?php echo date_format(date_create($data['tanggal']),"d-m-Y"); ?></td>
-                      <td><?php echo $data['keterangan']; ?></td>
-                      <td class="rupiah" style="text-align: right;"><?php echo $data['jumlah_biaya']; ?></td>
-                    </tr>
-                    <?php $no++; } ?>
-                    <tr>
-                        <td colspan="3" style="text-align: right;font-weight: bold;">Total (Rp)</td>
-                        <td style="text-align: right;font-weight: bold;" class="rupiah"><?php echo $total; ?></td>
+                   <?php
+                    foreach($rekeningkoran->result_array() as $data) { ?>
+                        <tr>
+                          <td><?php echo $data['tanggal']; ?></td>
+                          <td><?php echo $data['deskripsi']; ?></td>
+                          <td><?php echo $data['debit']; ?></td>
+                          <td><?php echo $data['kredit']; ?></td>
+                          <td><?php echo $data['saldo_akhir']; ?></td>
+                        </tr>
+                  <?php  } ?>
                   </tbody>
                 </table>
               </div>

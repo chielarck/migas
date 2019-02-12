@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/maruti-style.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/maruti-media.css" class="skin-color" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/datepicker.css" class="skin-color" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/select2.css"/>
+
+
 
 <script src="<?php echo base_url(); ?>asset/js/jquery.min.js"></script> 
 <script src="<?php echo base_url(); ?>asset/js/jquery.ui.custom.js"></script> 
@@ -25,7 +28,7 @@
 <script src="<?php echo base_url(); ?>asset/js/jquery.inputmask.bundle.js"></script>
 <script src="<?php echo base_url(); ?>asset/js/jquery.dynamicTable-1.0.0.js"></script>
 <script src="<?php echo base_url(); ?>asset/js/bootstrap-datepicker.js"></script>
-
+<script src="<?php echo base_url(); ?>asset/js/select2.min.js"></script>
 
 <style type="text/css">
   .table td {
@@ -81,7 +84,7 @@
     <li class="submenu"> <a href="#"><i class="icon icon-print"></i> <span>Laporan</span> <span><i class="icon-chevron-down"></i></span></a>
       <ul>
         <li><a href="<?php echo base_url(); ?>laporan/penagihan">Laporan Penagihan</a></li>
-        <li><a href="<?php echo base_url(); ?>laporan/kaskeluar">Laporan Kas</a></li>
+        <li><a href="<?php echo base_url(); ?>laporan/rekeningkoran">Laporan Rekening Koran</a></li>
       </ul>
     </li>
   </ul>

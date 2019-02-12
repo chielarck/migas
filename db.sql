@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.6.20 : Database - db_migas
+MySQL - 5.6.16 : Database - db_migas
 *********************************************************************
 */
 
@@ -24,15 +24,35 @@ CREATE TABLE `tbl_anggota` (
   `id_anggota` int(11) NOT NULL AUTO_INCREMENT,
   `no_pt` varchar(50) DEFAULT NULL,
   `nama_pt` varchar(150) NOT NULL,
+  `pengurus_pt` varchar(100) NOT NULL,
+  `telepone_pt` varchar(15) NOT NULL,
+  `email_pt` varchar(100) NOT NULL,
+  `no_kta` varchar(100) NOT NULL,
+  `alamat_pt` text NOT NULL,
   `id_jenis` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
   `aktif` char(1) NOT NULL DEFAULT '1',
   `pemilik_pt` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_anggota` */
 
-insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`id_jenis`,`aktif`,`pemilik_pt`) values (1,'1','1',1,'1','1'),(2,'2','2',2,'1','2');
+insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`pengurus_pt`,`telepone_pt`,`email_pt`,`no_kta`,`alamat_pt`,`id_jenis`,`id_group`,`aktif`,`pemilik_pt`) values (1,'PT Abc','1','Udin','0823131','e@e.com','01231313','xxxx',1,1,'1','1'),(2,'123131313','PT CDA','Joko','014142342','eda','-','das',2,1,'1','Joko'),(3,'23456','qwertyui','wertyuio','wertyuio','qwert@mail.com','123456','wertydfghcvbnf dfghjkl',1,1,'1','qwertyui'),(4,'','dad','dad','qwe','adaqe','343','da',2,1,'1','sfs');
+
+/*Table structure for table `tbl_group` */
+
+DROP TABLE IF EXISTS `tbl_group`;
+
+CREATE TABLE `tbl_group` (
+  `id_group` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_group` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_group`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_group` */
+
+insert  into `tbl_group`(`id_group`,`nama_group`) values (1,'Group 1 lagi'),(2,'Group ABCD');
 
 /*Table structure for table `tbl_jenis` */
 
@@ -59,11 +79,26 @@ CREATE TABLE `tbl_kaskeluar` (
   `jumlah_biaya` float DEFAULT NULL,
   `jenis_kas` enum('MASUK','KELUAR') DEFAULT NULL,
   PRIMARY KEY (`id_kaskeluar`)
-) ENGINE=InnoDB AUTO_INCREMENT=693 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_kaskeluar` */
 
-insert  into `tbl_kaskeluar`(`id_kaskeluar`,`keterangan`,`tanggal`,`jumlah_biaya`,`jenis_kas`) values (118,'beli minyak di warung','2019-02-02',200000,'KELUAR'),(236,'Token Listrik PRO','2019-02-02',140000,'KELUAR'),(371,'kopi gratis\r\n','2019-02-20',20000,'MASUK'),(469,'siipp\r\n','2019-01-01',400000,'KELUAR'),(684,'BELI AYAM','2019-02-15',21000,'KELUAR'),(692,'THR','2019-02-28',180000,'MASUK');
+/*Table structure for table `tbl_rekeningkoran` */
+
+DROP TABLE IF EXISTS `tbl_rekeningkoran`;
+
+CREATE TABLE `tbl_rekeningkoran` (
+  `id_bukubesar` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` date DEFAULT NULL,
+  `deskripsi` varchar(200) DEFAULT NULL,
+  `debit` float DEFAULT '0',
+  `kredit` float DEFAULT '0',
+  `id_tagihan` int(11) DEFAULT NULL,
+  `id_kaskeluar` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_bukubesar`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_rekeningkoran` */
 
 /*Table structure for table `tbl_saldo` */
 
@@ -74,6 +109,20 @@ CREATE TABLE `tbl_saldo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_saldo` */
+
+/*Table structure for table `tbl_saldoawal` */
+
+DROP TABLE IF EXISTS `tbl_saldoawal`;
+
+CREATE TABLE `tbl_saldoawal` (
+  `id_saldoawal` int(11) NOT NULL AUTO_INCREMENT,
+  `jumlah` float NOT NULL,
+  PRIMARY KEY (`id_saldoawal`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_saldoawal` */
+
+insert  into `tbl_saldoawal`(`id_saldoawal`,`jumlah`) values (1,2500000);
 
 /*Table structure for table `tbl_tagihan` */
 
@@ -86,11 +135,9 @@ CREATE TABLE `tbl_tagihan` (
   `jumlah_bayar` float DEFAULT '0',
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`id_tagihan`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_tagihan` */
-
-insert  into `tbl_tagihan`(`id_tagihan`,`tanggal_event`,`id_anggota`,`jumlah_bayar`,`tanggal`) values (4,'2019-01-01',1,0,NULL),(5,'2018-01-01',1,0,NULL),(6,'2018-05-01',1,0,NULL),(7,'2019-04-04',1,0,NULL),(8,'2019-04-10',2,0,NULL),(9,'2019-02-10',1,150000,NULL),(10,'2019-02-10',2,2000000000,'2019-02-07');
 
 /*Table structure for table `tbl_user` */
 
@@ -105,7 +152,82 @@ CREATE TABLE `tbl_user` (
 
 /*Data for the table `tbl_user` */
 
-insert  into `tbl_user`(`id_user`,`username`,`password`) values (1,'admin','123');
+insert  into `tbl_user`(`id_user`,`username`,`password`) values (1,'admin','admin');
+
+/* Trigger structure for table `tbl_kaskeluar` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `kas` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `kas` AFTER INSERT ON `tbl_kaskeluar` FOR EACH ROW BEGIN
+	IF (NEW.jenis_kas = 'KELUAR') THEN
+	INSERT INTO tbl_rekeningkoran (debit,deskripsi,tanggal,id_kaskeluar) VALUES (NEW.jumlah_biaya,NEW.keterangan,NEW.tanggal,NEW.id_kaskeluar);
+        END IF; 
+        IF (NEW.jenis_kas = 'MASUK') THEN
+	INSERT INTO tbl_rekeningkoran (kredit,deskripsi,tanggal,id_kaskeluar) VALUES (NEW.jumlah_biaya,NEW.keterangan,NEW.tanggal,NEW.id_kaskeluar);
+        END IF; 
+   END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `tbl_kaskeluar` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `kas_update` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `kas_update` AFTER UPDATE ON `tbl_kaskeluar` FOR EACH ROW BEGIN
+	IF (NEW.jenis_kas = 'KELUAR') THEN
+	UPDATE tbl_rekeningkoran SET debit = NEW.jumlah_biaya, kredit = 0, tanggal = NEW.tanggal, deskripsi = NEW.keterangan WHERE id_kaskeluar = NEW.id_kaskeluar; 
+        END IF; 
+        IF (NEW.jenis_kas = 'MASUK') THEN
+	UPDATE tbl_rekeningkoran SET kredit = NEW.jumlah_biaya, debit = 0, tanggal = NEW.tanggal, deskripsi = NEW.keterangan WHERE id_kaskeluar = NEW.id_kaskeluar; 
+        END IF; 
+    END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `tbl_kaskeluar` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `kas_hapus` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `kas_hapus` AFTER DELETE ON `tbl_kaskeluar` FOR EACH ROW BEGIN
+	DELETE FROM tbl_rekeningkoran WHERE id_kaskeluar = OLD.id_kaskeluar ;
+    END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `tbl_tagihan` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `tagihan` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `tagihan` AFTER UPDATE ON `tbl_tagihan` FOR EACH ROW BEGIN
+	DECLARE ID_TAG,ID_NEW,ID_ANGGOTAX INT;
+	DECLARE NAMA_ANGGOTA,ISI CHAR(100);
+	SET ID_TAG=NEW.id_tagihan;
+	SET ID_ANGGOTAX=NEW.id_anggota;
+	IF(NEW.tanggal != 0 AND NEW.jumlah_bayar != 0) THEN
+	SET @NAMA_ANGGOTA=(SELECT nama_pt FROM tbl_anggota WHERE id_anggota=ID_ANGGOTAX);
+	SET @ISI=CONCAT('DANA KEMITRAAN ', @NAMA_ANGGOTA, ' BULAN ', MONTHNAME(NEW.tanggal_event), '-', YEAR(NEW.tanggal_event));
+	SET @ID_NEW=(SELECT COUNT(*) FROM tbl_rekeningkoran WHERE id_tagihan=ID_TAG);
+	IF(@ID_NEW=0) THEN
+		INSERT INTO tbl_rekeningkoran (deskripsi,kredit,tanggal,id_tagihan) VALUES (@ISI,NEW.jumlah_bayar,NEW.tanggal,NEW.id_tagihan);
+	ELSE
+		UPDATE tbl_rekeningkoran SET deskripsi=@ISI,tanggal=NEW.tanggal,kredit=NEW.jumlah_bayar WHERE id_tagihan=NEW.id_tagihan;
+	END IF; 
+		END IF;
+    END */$$
+
+
+DELIMITER ;
 
 /* Procedure structure for procedure `stored_bulanan` */
 
@@ -113,7 +235,7 @@ insert  into `tbl_user`(`id_user`,`username`,`password`) values (1,'admin','123'
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `stored_bulanan`(IN bulan CHAR(20))
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `stored_bulanan`(IN `bulan` CHAR(20))
 BEGIN
 	DECLARE id,i,total,t,alt,xac INT;
 	declare tgl CHAR(20);
@@ -154,6 +276,26 @@ BEGIN
 	END IF;
         END IF;
     END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `stored_rekening` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `stored_rekening` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `stored_rekening`(IN `bulan` CHAR(20))
+BEGIN
+DECLARE sumall,debitx,saldo_awal INT DEFAULT 0;
+set @csum := 0;
+SET sumall=0;
+SET saldo_awal=(SELECT COALESCE(SUM(jumlah),0) FROM tbl_saldoawal);
+SET debitx=(SELECT COALESCE(SUM(debit),0) FROM tbl_rekeningkoran where tanggal BETWEEN '2019-01-01' AND bulan-INTERVAL 1 DAY);
+SET sumall=(SELECT COALESCE(SUM(kredit),0) FROM tbl_rekeningkoran where tanggal BETWEEN '2019-01-01' AND bulan-INTERVAL 1 DAY);
+SET @csum = saldo_awal+sumall-debitx;
+SELECT *,(@csum := @csum + kredit - debit) AS saldo_akhir FROM tbl_rekeningkoran WHERE MONTH(tanggal)=MONTH(bulan) AND YEAR(tanggal)=YEAR(bulan) ORDER BY tanggal ASC;
+    
+END */$$
 DELIMITER ;
 
 /*Table structure for table `view_kas` */

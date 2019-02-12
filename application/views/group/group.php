@@ -42,7 +42,7 @@
 		              <thead>
 		              	<tr>
 		              		<th>No</th>
-		              		<th>group Perusahaan</th>
+		              		<th>Group Perusahaan</th>
 		              		<th></th>
 		              	</tr>
 		              </thead>
@@ -76,7 +76,7 @@
       	<div class="modal-body">
 	      	
       		<div class="form-group">
-      			<label class="bmd-label-floating"> group Perusahaan</label>
+      			<label class="bmd-label-floating"> Group Perusahaan</label>
       			<input style="width: 80%;" type="text" class="form-control" name="nama_group" maxlength="15" required>
       		</div>
 	    </div>
@@ -93,14 +93,14 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">UBAH DATA group PERUSAHAAN</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">UBAH DATA GROUP PERUSAHAAN</h5>
       </div>
       <?php echo form_open_multipart('group/ubah'); ?>
       <input type="hidden" name="tipe" value="add">
       	<div class="modal-body">
 	      	<input type="hidden" id="id_group" name="id_group" class="id_group">
       		<div class="form-group">
-      			<label class="bmd-label-floating"> group Perusahaan</label>
+      			<label class="bmd-label-floating"> Group Perusahaan</label>
       			<input style="width: 80%;" type="text" class="form-control nama_group" name="nama_group" maxlength="15" required>
       		</div>
 	    </div>
