@@ -11,6 +11,7 @@
 	      		<div class="row-fluid" style="margin: 0;">
 	      			<div class="span6">
 	      				<a style="margin-top: 15px;" class="btn btn-primary" href="" data-toggle="modal" data-target="#modalAdd">Tambah Data</a>
+                <a style="margin-top: 15px;" class="btn btn-danger" href="<?php echo base_url().'anggota/anggota_export'; ?>" target="_blank">Export Excel</a>
 	      			</div>
 	      			<div class="span6">
 
@@ -168,7 +169,7 @@
 
           <div class="form-group">
             <label class="bmd-label-floating">Pengurus PT</label>
-            <input style="width: 80%;" type="text" class="form-control" name="pengurus_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control" name="pengurus_pt" maxlength="150" >
           </div>
 
           <div class="form-group">
@@ -266,12 +267,12 @@
 
           <div class="form-group">
             <label class="bmd-label-floating">Telepone PT</label>
-            <input style="width: 80%;" type="text" class="form-control telepone_pt" name="telepone_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control telepone_pt" name="telepone_pt" maxlength="150" >
           </div>
 
           <div class="form-group">
             <label class="bmd-label-floating">Email PT</label>
-            <input style="width: 80%;" type="text" class="form-control email_pt" name="email_pt" maxlength="150" required>
+            <input style="width: 80%;" type="text" class="form-control email_pt" name="email_pt" maxlength="150" >
           </div>
           <div class="form-group">
             <label class="bmd-label-floating">NO KTA</label>

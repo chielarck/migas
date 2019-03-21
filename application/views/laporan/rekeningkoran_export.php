@@ -1,7 +1,7 @@
 <?php
 header("Content-type: application/vnd-ms-excel");
 $tgl = date("d-m-Y");
-$judul = "LAPORAN_PENAGIHAN_".$bulan."_".$tahun.".xls";
+$judul = "LAPORAN_REKENING_KORAN_".$bulan."_".$tahun.".xls";
 header("Content-Disposition: attachment; filename=$judul");
 
 $bulan_arr = array(

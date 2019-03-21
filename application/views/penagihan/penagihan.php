@@ -97,7 +97,7 @@ $bulan_arr = array(
                       <td style="text-align: center;"><?php echo $data['nama_pt']; ?></td>
                       <td style="text-align: center;"><?php echo $data['nama_jenis']; ?></td>
                        <td style="text-align: center;"><?php echo $data['pemilik_pt']; ?></td>
-                      <td style="text-align: right;" font-size"18" class="biaya<?php echo $data['id_tagihan']; ?>"><?php echo number_format($data['jumlah_bayar']); ?></td>
+                      <td style="text-align: right;" font-size="18" class="biaya<?php echo $data['id_tagihan']; ?>"><?php echo number_format($data['jumlah_bayar']); ?></td>
                       <td style="text-align: center;"><?php if(!empty($data['tanggal']) && $data['tanggal'] != "0000-00-00") echo $data['tanggal']; ?></td>
                       </tr>
                         <?php $no++; } ?>

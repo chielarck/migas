@@ -34,11 +34,9 @@ CREATE TABLE `tbl_anggota` (
   `aktif` char(1) NOT NULL DEFAULT '1',
   `pemilik_pt` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_anggota` */
-
-insert  into `tbl_anggota`(`id_anggota`,`no_pt`,`nama_pt`,`pengurus_pt`,`telepone_pt`,`email_pt`,`no_kta`,`alamat_pt`,`id_jenis`,`id_group`,`aktif`,`pemilik_pt`) values (1,'PT Abc','1','Udin','0823131','e@e.com','01231313','xxxx',1,1,'1','1'),(2,'123131313','PT CDA','Joko','014142342','eda','-','das',2,1,'1','Joko'),(3,'23456','qwertyui','wertyuio','wertyuio','qwert@mail.com','123456','wertydfghcvbnf dfghjkl',1,1,'1','qwertyui'),(4,'','dad','dad','qwe','adaqe','343','da',2,1,'1','sfs');
 
 /*Table structure for table `tbl_group` */
 
@@ -48,11 +46,9 @@ CREATE TABLE `tbl_group` (
   `id_group` int(11) NOT NULL AUTO_INCREMENT,
   `nama_group` varchar(100) NOT NULL,
   PRIMARY KEY (`id_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_group` */
-
-insert  into `tbl_group`(`id_group`,`nama_group`) values (1,'Group 1 lagi'),(2,'Group ABCD');
 
 /*Table structure for table `tbl_jenis` */
 
@@ -62,11 +58,9 @@ CREATE TABLE `tbl_jenis` (
   `id_jenis` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jenis` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_jenis`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_jenis` */
-
-insert  into `tbl_jenis`(`id_jenis`,`nama_jenis`) values (1,'SPBU'),(2,'PSO'),(3,'SPBE'),(4,'HPE'),(5,'TRANSPORTIR');
 
 /*Table structure for table `tbl_kaskeluar` */
 
@@ -122,7 +116,7 @@ CREATE TABLE `tbl_saldoawal` (
 
 /*Data for the table `tbl_saldoawal` */
 
-insert  into `tbl_saldoawal`(`id_saldoawal`,`jumlah`) values (1,2500000);
+insert  into `tbl_saldoawal`(`id_saldoawal`,`jumlah`) values (1,50000000);
 
 /*Table structure for table `tbl_tagihan` */
 

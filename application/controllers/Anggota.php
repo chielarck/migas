@@ -14,6 +14,15 @@ class anggota extends CI_Controller {
 		}
 	}
 
+	public function anggota_export() {
+		if($this->session->userdata('username') != "") { 
+			$data['list_anggota'] = $this->db->query('SELECT * FROM tbl_anggota ORDER BY id_anggota DESC')->result();
+			$this->load->view('anggota/anggota_export',$data);
+		} else {
+			redirect("login");
+		}
+	}
+
 	public function simpan(){
 		if($this->session->userdata('username') != "") { 
 		$data = array(

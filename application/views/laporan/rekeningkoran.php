@@ -92,11 +92,11 @@ $bulan_arr = array(
                    <?php
                     foreach($rekeningkoran->result_array() as $data) { ?>
                         <tr>
-                          <td><?php echo $data['tanggal']; ?></td>
+                          <td style="text-align:center;"><?php echo date("d-m-Y",strtotime($data['tanggal'])); ?></td>
                           <td><?php echo $data['deskripsi']; ?></td>
-                          <td><?php echo $data['debit']; ?></td>
-                          <td><?php echo $data['kredit']; ?></td>
-                          <td><?php echo $data['saldo_akhir']; ?></td>
+                          <td style="text-align:right;"><?php echo number_format($data['debit']); ?></td>
+                          <td  style="text-align:right;"><?php echo number_format($data['kredit']); ?></td>
+                          <td  style="text-align:right;"><?php echo number_format($data['saldo_akhir']); ?></td>
                         </tr>
                   <?php  } ?>
                   </tbody>
