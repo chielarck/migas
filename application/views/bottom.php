@@ -16,7 +16,7 @@
     format: "dd-mm-yyyy",
     todayHighlight: true,
     autoclose: true
-  }).on('changeDate', function(ev){                 
+  }).on('changeDate', function(ev){
         $('.tgl').datepicker('hide');
   });
 
@@ -34,12 +34,12 @@
   });
 
 
- 
- 
+
+
 </script>
 
 <script type="text/javascript">
- 
+
   $(".ubah_data").click(function() {
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".nama_jenis").val($(this).attr('data-namaJenis'));
@@ -61,7 +61,10 @@
     $(".id_jenis").val($(this).attr('data-idJenis'));
     $(".aktif").val($(this).attr('data-aktif'));
     $(".pemilik_pt").val($(this).attr('data-pemilikPt'));
-
+    $(".pengurus_pt").val($(this).attr('data-pengurusPt'));
+    $(".telepone_pt").val($(this).attr('data-teleponePt'));
+    $(".email_pt").val($(this).attr('data-emailPt'));
+    $(".alamat_pt").val($(this).attr('data-alamatPt'));
 
       // alert('aaa');
     });
@@ -73,7 +76,7 @@
     $(".tanggal").val($(this).attr('data-tanggal'));
     $(".jenis_kas").val($(this).attr('data-jenisKas'));
 
-    
+
       // alert('aaa');
     });
 
